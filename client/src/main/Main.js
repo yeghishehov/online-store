@@ -1,14 +1,14 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom'
-import Header from '../../components/header/Header'
-import Home from '../home/Home'
-import Men from '../men/Men'
-import Women from '../women/Women'
-import Outlet from '../outlet/Outlet'
-import About from '../about/About'
-import Contact from '../contact/Contact'
+import Header from '../components/header/Header'
+import Home from '../pages/home/Home'
+import About from '../pages/about/About'
+import Contact from '../pages/contact/Contact'
+import Men from '../collections/men/Men'
+import Women from '../collections/women/Women'
+import Outlet from '../collections/outlet/Outlet'
 
-import { ROUTES } from '../../globals/routes.js'
+import { ROUTES } from '../globals/routes.js'
 
 export default function Main() {
   return (
