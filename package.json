@@ -17,6 +17,7 @@
   "author": "Yeghishe Hovhannisyan <yeghishehov.1@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/icons": "^4.9.1",
     "express": "^4.17.1",
     "mongoose": "^5.10.2"
   },
