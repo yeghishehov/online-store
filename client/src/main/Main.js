@@ -1,6 +1,7 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom'
 import Header from '../components/header/Header'
+import Footer from '../components/footer/Footer'
 import Home from '../pages/home/Home'
 import About from '../pages/about/About'
 import Contact from '../pages/contact/Contact'
@@ -35,6 +36,8 @@ export default function Main() {
           <Contact />
         </Route>
       </Switch>
+
+      <Footer />
     </div>
   )
 }

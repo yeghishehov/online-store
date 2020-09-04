@@ -1,6 +1,6 @@
-import { ROUTES } from '../../globals/routes';
+import { ROUTES } from '../../../globals/routes';
 
-export const links = [
+export const linksHeader = [
   { route: ROUTES.men, text: "Men" },
   { route: ROUTES.women, text: "Women" },
   { route: ROUTES.outlet, text: "Outlet" },
