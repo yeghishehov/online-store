@@ -14,5 +14,9 @@ export default makeStyles((theme) => ({
   },
   link: {
     textDecoration: 'none',
+    borderBottom: '1px solid #fff',
+    '&:hover': {
+      borderBottom: '1px solid #000',
+    },
   }
 }));
