@@ -6,6 +6,10 @@ import useStyles from './navFooter.style'
 export default function NavFooter(){
   const classes = useStyles()
 
+  const handleScrollToTop = () => {
+    window.scrollTo(0, 0)
+  }
+
   return(
     <div className={classes.root}>
       <div className={classes.links}>
@@ -18,6 +22,7 @@ export default function NavFooter(){
               className={classes.link} 
               key={link.text}
               to={link.route}
+              onClick={handleScrollToTop}
             >
               {link.text}
             </Link>
@@ -35,6 +40,7 @@ export default function NavFooter(){
             className={classes.link} 
             key={link.text}
             to={link.route}
+            onClick={handleScrollToTop}
           >
             {link.text}
           </Link>
