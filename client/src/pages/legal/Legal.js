@@ -1,12 +1,12 @@
 import React from 'react'
-import useStyles from './abaut.style'
+import useStyles from './legal.style'
 
-export default function About () {
+export default function Legal () {
   const classes = useStyles();
-
+  
   return (
     <div>
-      About
+    Legal
     </div>
   )
 }

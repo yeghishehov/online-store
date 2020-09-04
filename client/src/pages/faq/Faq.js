@@ -1,12 +1,12 @@
 import React from 'react'
-import useStyles from './abaut.style'
+import useStyles from './faq.style'
 
-export default function About () {
+export default function Faq () {
   const classes = useStyles();
-
+  
   return (
     <div>
-      About
+    Faq
     </div>
   )
 }

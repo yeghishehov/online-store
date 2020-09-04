@@ -1,12 +1,12 @@
 import React from 'react'
-import useStyles from './contact.style'
+import useStyles from './shipment.style'
 
-export default function Contact () {
+export default function Shipment () {
   const classes = useStyles();
   
   return (
     <div>
-      Contact
+      Shipment
     </div>
   )
 }

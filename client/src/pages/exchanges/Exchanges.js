@@ -1,12 +1,12 @@
 import React from 'react'
-import useStyles from './contact.style'
+import useStyles from './exchanges.style'
 
-export default function Contact () {
+export default function Exchanges () {
   const classes = useStyles();
   
   return (
     <div>
-      Contact
+    Exchanges
     </div>
   )
 }

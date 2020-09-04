@@ -1,12 +1,12 @@
 import React from 'react'
-import useStyles from './contact.style'
+import useStyles from './sizeChart.style'
 
-export default function Contact () {
+export default function SizeChart () {
   const classes = useStyles();
   
   return (
     <div>
-      Contact
+      Size Chart
     </div>
   )
 }
