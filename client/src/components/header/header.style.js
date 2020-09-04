@@ -5,9 +5,10 @@ export default makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '90%',
-    margin: 'auto',
-    fontSize: 17,
+    paddingLeft: 70,
+    paddingRight: 70,  
+    fontSize: 16,
+    borderBottom: '1px solid #ddd',
     [theme.breakpoints.down('sm')]: {
       width: '100%',
       flexDirection: 'column',
