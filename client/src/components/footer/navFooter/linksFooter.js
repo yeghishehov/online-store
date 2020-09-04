@@ -5,7 +5,7 @@ export const allAboutYourOrder = [
   { route: ROUTES.exchanges, text: "Exchanges" },
   { route: ROUTES.returns, text: "Returns" },
   { route: ROUTES.sizeChart, text: "Size Chart" },
-  { route: ROUTES.contact, text: "FAQ" },
+  { route: ROUTES.faq, text: "FAQ" },
 ];
 
 export const allAboutUs = [
