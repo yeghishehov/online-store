@@ -4,10 +4,12 @@ export default makeStyles((theme) => ({
   root: {
     // display: 'flex',
     // justifyContent: 'space-between',
-
     [theme.breakpoints.down('sm')]: {
-
+      
     },
+  },
+  typography: {
+
   },
 
 }));

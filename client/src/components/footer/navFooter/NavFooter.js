@@ -1,14 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { linksOrder, linksAs } from './linksFooter'
+import handleScrollToTop from '../../../globals/scrollToTop'
 import useStyles from './navFooter.style'
 
 export default function NavFooter(){
   const classes = useStyles()
-
-  const handleScrollToTop = () => {
-    window.scrollTo(0, 0)
-  }
 
   return(
     <div className={classes.root}>
