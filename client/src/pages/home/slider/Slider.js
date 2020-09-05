@@ -39,8 +39,11 @@ export default function Slider() {
       <div className={classes.slide}>
         {SLIDES.map((slide, index) => (
           <div
+            key={slide}
             className={
-              activeSlide === index ? classes.active : classes.hidden
+              activeSlide === index 
+                ? classes.active 
+                : classes.hidden
             }
           >
             <img className={classes.img} src={slide} alt={`slide: ${index}`} />
@@ -54,6 +57,7 @@ export default function Slider() {
         </Button>
         {SLIDES.map((slide, index) => (
           <Radio
+            key={slide}
             checked={index === activeSlide}
             value={index} 
             onChange={handleRadioChange}
