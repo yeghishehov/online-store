@@ -4,9 +4,8 @@ export default makeStyles((theme) => ({
   root: {
     // display: 'flex',
     // justifyContent: 'space-between',
-
+    marginBottom: 120,
     [theme.breakpoints.down('sm')]: {
-
     },
   },
   active: {
@@ -15,5 +14,14 @@ export default makeStyles((theme) => ({
   hidden: {
     display: 'none',
   },
-
+  control: {
+    marginTop: -50,
+    textAlign: 'center',
+  },
+  slide: {
+    
+  },
+  img: {
+    width: '100%',
+  },
 }));
