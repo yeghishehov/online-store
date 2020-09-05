@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { allAboutYourOrder, allAboutUs } from './linksFooter'
+import { linksOrder, linksAs } from './linksFooter'
 import useStyles from './navFooter.style'
 
 export default function NavFooter(){
@@ -17,7 +17,7 @@ export default function NavFooter(){
           All about your order
         </div>
         {
-          allAboutYourOrder.map(link => (
+          linksOrder.map(link => (
             <Link
               className={classes.link} 
               key={link.text}
@@ -35,7 +35,7 @@ export default function NavFooter(){
           All about us :)
         </div>
         {
-          allAboutUs.map(link => (
+          linksAs.map(link => (
           <Link
             className={classes.link} 
             key={link.text}

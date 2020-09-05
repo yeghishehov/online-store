@@ -1,6 +1,6 @@
 import { ROUTES } from '../../../globals/routes';
 
-export const allAboutYourOrder = [
+export const linksOrder = [
   { route: ROUTES.shipment, text: "Shipment" },
   { route: ROUTES.exchanges, text: "Exchanges" },
   { route: ROUTES.returns, text: "Returns" },
@@ -8,7 +8,7 @@ export const allAboutYourOrder = [
   { route: ROUTES.faq, text: "FAQ" },
 ];
 
-export const allAboutUs = [
+export const linksAs = [
   { route: ROUTES.about, text: "About" },
   { route: ROUTES.contact, text: "Contact" },
   { route: ROUTES.dressYourProject, text: "Dress Your Project" },
