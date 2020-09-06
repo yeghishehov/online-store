@@ -32,4 +32,40 @@ export default makeStyles((theme) => ({
     },
   },
 
+  card: {
+    maxWidth: 400,
+    width: 400,
+    marginBottom: 50,
+    boxShadow: 'none',
+    '&:hover': {
+      '& hr': {
+        borderBottom: '1px solid black',
+      },
+      '& $media': {
+        opacity: 0.7,
+      },
+    },
+    
+  },
+  media: {
+    height: 200,
+    width: 300,
+    margin: 'auto',
+  },
+  typography: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: 100,
+    margin: 'auto',   
+  },
+  items: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+  },
+  hr: {
+    border: '1px solid white',
+  }
 }));
