@@ -4,6 +4,8 @@ export const ROUTES = {
   men: '/collections/men',
   women: '/collections/women',
   outlet: '/collections/outlet',
+  flatRate46: '/collections/flat-rate-46',
+  summerSpecialSelection: '/collections/summer-special-selection',
   collections: '/collections',
 
   shipment: '/pages/shipment',
