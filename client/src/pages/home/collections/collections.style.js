@@ -4,7 +4,7 @@ export default makeStyles((theme) => ({
   root: {
     // display: 'flex',
     // justifyContent: 'space-between',
-    marginBottom: 10,
+    marginBottom: 40,
     [theme.breakpoints.down('sm')]: {
       
     },
