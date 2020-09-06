@@ -33,14 +33,56 @@ export default function Home () {
       />
 
       <div className={classes.collectionManWoman}>
-        <Link to={ROUTES.men} className={classes.link} >
-          Men
-        </Link>
-        <div className={classes.space}></div>
-        <Link to={ROUTES.women} className={classes.link} >
-          Women
-        </Link>
+        <div className={classes.linkContainer}>
+          <Link to={ROUTES.men} className={classes.link} >
+            Men
+          </Link>
+          <Link to={ROUTES.women} className={classes.link} >
+            Women
+          </Link>
+        </div>
       </div>
+
+      <div className={classes.heroInner}></div>
+
+      <div className={classes.textContainer}>
+        <div className={classes.text1}>
+          We dress a generation of urban professionals, creatives and innovators that need functional yet modern products for their everyday lives.
+        </div>
+        <div className={classes.text2}>
+          We have sold more than 250K pairs. We have customers in more than 51 countries. We sell in more tan 320 shops all around the globe.
+          <div className={classes.hashtag}>#dothefuture</div>
+        </div>
+      </div>
+          
+      <div className={classes.collectionAccessories}>
+        <div className={classes.accessories}>
+          <div className={classes.accessText}>
+            Accessories
+            <div>
+              <Link to={ROUTES.startup} className={classes.link} >
+                View all
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className={classes.clothing}>
+          <div className={classes.accessText}>
+            Clothing
+            <div>
+              <Link to={ROUTES.womenTextile} className={classes.link} >
+                View all
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={classes.instashop}>
+
+      </div>
+
     </div>
   )
 }
