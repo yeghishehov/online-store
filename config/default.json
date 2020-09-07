@@ -1,0 +1,5 @@
+{
+    "port": 5000,
+    "jwtSecret": "metal gear solid",
+    "mongoUri": "mongodb+srv://yeghishe:yeghishe352454@cluster0.yrgan.azure.mongodb.net/app?retryWrites=true&w=majority"
+}
