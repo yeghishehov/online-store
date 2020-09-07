@@ -80,7 +80,19 @@ export default function Home () {
       </div>
 
       <div className={classes.instashop}>
-
+        <div className={classes.square}>
+          <img className={classes.img} src="https://m.photoslurp.com/i/fit?width=287&height=360&url=https%3A%2F%2Fstorage.googleapis.com%2Fpslurpmedia%2Finstagram-business%2F18110110657082281_0.jpg" alt=""/>
+          <img className={classes.img} src="https://m.photoslurp.com/i/fit?width=360&height=360&url=https%3A%2F%2Fstorage.googleapis.com%2Fpslurpmedia%2Finstagram-business%2F17855381918074934_0.jpg" alt=""/>
+          <img className={classes.img} src="https://m.photoslurp.com/i/fit?width=360&height=360&url=https%3A%2F%2Fstorage.googleapis.com%2Fpslurpmedia%2Finstagram-business%2F18050767351210577_1.jpg" alt=""/>
+          <img className={classes.img} src="https://m.photoslurp.com/i/fit?width=360&height=360&url=https%3A%2F%2Fstorage.googleapis.com%2Fpslurpmedia%2Finstagram-business%2F17981804470295469_1.jpg" alt=""/>
+        </div>
+        <div className={classes.grow} > </div>
+        <div>
+          <img className={classes.img} src="https://m.photoslurp.com/i/fit?width=240&height=360&url=https%3A%2F%2Fstorage.googleapis.com%2Fpslurpmedia%2Finstagram-business%2F17891566750532105_0.jpg" alt=""/>
+          <img className={classes.img} src="https://m.photoslurp.com/i/fit?width=360&height=304&url=https%3A%2F%2Fstorage.googleapis.com%2Fpslurpmedia%2Finstagram-business%2F17883818224495207_0.jpg" alt=""/>
+          <img className={classes.img} src="https://m.photoslurp.com/i/fit?width=360&height=288&url=https%3A%2F%2Fstorage.googleapis.com%2Fpslurpmedia%2Finstagram-business%2F18084023557158795_0.jpg" alt=""/>
+          <img className={classes.img} src="https://m.photoslurp.com/i/fit?width=360&height=360&url=https%3A%2F%2Fstorage.googleapis.com%2Fpslurpmedia%2Finstagram-business%2F17894157352447127_0.jpg" alt=""/>
+        </div>
       </div>
 
     </div>

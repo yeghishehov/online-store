@@ -105,6 +105,26 @@ export default makeStyles((theme) => ({
     paddingLeft: 50,
     paddingBottom: 50,
     fontSize: 64,
-    
+  },
+  instashop: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  img: {
+    height: 216,
+    width: 216,
+  },
+  grow: {
+    flexGrow: 1,
+    height: 433,
+    width: 433,
+    background: `url(${"https://m.photoslurp.com/i/fit?width=720&height=720&url=https%3A%2F%2Fstorage.googleapis.com%2Fpslurpmedia%2Finstagram-business%2F17860360942911146_0.jpg"})  no-repeat`,
+    backgroundSize: 'cover',
+  },
+  square: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    height: 433,
+    width: 433,
   }
 }));
