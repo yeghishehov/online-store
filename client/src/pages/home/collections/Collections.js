@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import handleScrollToTop from '../../../globals/scrollToTop'
@@ -34,7 +33,7 @@ export default function Collections ({  title, text, route, viewItems }) {
 
       <div className={classes.items}>
         {viewItems.map(item => (
-          <Card className={classes.card}>
+          <Card key={item} className={classes.card}>
             <CardActionArea>
               <CardMedia
                 className={classes.media}

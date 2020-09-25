@@ -18,7 +18,7 @@ export default makeStyles((theme) => ({
   nav: {
     display: 'flex',
     justifyContent: 'space-between',
-    width: 770,
+    width: '60%',
 
   },
   logo: {

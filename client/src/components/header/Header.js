@@ -23,7 +23,9 @@ export default function Header () {
 
       <div className={classes.icons}>
         <SearchIcon fontSize='inherit' />
-        <PermIdentityIcon fontSize='inherit' />
+        <Link to={ROUTES.login}>
+          <PermIdentityIcon fontSize='inherit' />
+        </Link>
         <ShoppingCartIcon fontSize='inherit' />
       </div>
     </div>

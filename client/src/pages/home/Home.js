@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Typography from '@material-ui/core/Typography';
 import Slider from './slider/Slider'
 import Collections from './collections/Collections'
 import { ROUTES } from '../../globals/routes'
@@ -17,19 +16,19 @@ export default function Home () {
         title='Flat Rate' 
         text='Our best sellers at 45€' 
         route={ROUTES.flatRate46}
-        viewItems={[0,1,2,3,4,5,6,7,8,1,2,2,2,2,2]}
+        viewItems={[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]}
       />
       <Collections 
         title='Summer special edition' 
         text='-15% light and breathable models.' 
         route={ROUTES.summerSpecialSelection}
-        viewItems={[0,1,2,3,4,5,6,7,8,1,2,2,2,2,2]}
+        viewItems={[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]}
       />
       <Collections 
         title='Outlet' 
         text='Outlet > Our greatest hits at the best price' 
         route={ROUTES.outlet}
-        viewItems={[0,1,2,3,4,5,6,7,8,1,2,2,2,2,2]}
+        viewItems={[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]}
       />
 
       <div className={classes.collectionManWoman}>

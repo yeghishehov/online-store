@@ -5,7 +5,7 @@ export default function Register () {
   const classes = useStyles();
 
   return (
-    <div>
+    <div className={classes.root} >
     Register
     </div>
   )

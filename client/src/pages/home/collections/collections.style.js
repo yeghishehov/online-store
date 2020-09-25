@@ -52,13 +52,6 @@ export default makeStyles((theme) => ({
     width: 300,
     margin: 'auto',
   },
-  typography: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: 100,
-    margin: 'auto',   
-  },
   items: {
     display: 'flex',
     flexWrap: 'wrap',

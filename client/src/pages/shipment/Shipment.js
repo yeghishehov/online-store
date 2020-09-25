@@ -31,7 +31,7 @@ export default function Shipment () {
       <br />
       *The shipping costs may vary depending on the country you are placing your order from. Below you can see all the countries we send our awesome shoes to:
       <br /><br />
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3048.0545664038323!2d44.51277731522518!3d40.18559907758818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDExJzA4LjEiTiA0NMKwMzAnNTMuOSJF!5e0!3m2!1sru!2s!4v1599257986335!5m2!1sru!2s" width="600" height="450" ></iframe>
+      <iframe title="asdqwe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3048.0545664038323!2d44.51277731522518!3d40.18559907758818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDExJzA4LjEiTiA0NMKwMzAnNTMuOSJF!5e0!3m2!1sru!2s!4v1599257986335!5m2!1sru!2s" width="600" height="450" ></iframe>
       <br />
       <h2>Delivery times</h2>
       <ul>
