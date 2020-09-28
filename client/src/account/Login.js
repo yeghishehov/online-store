@@ -1,45 +1,11 @@
-import React, { useState } from 'react'
-import { Typography, TextField } from '@material-ui/core';
-import axios from '../utils/axiosConfig';
-import useStyles from './style'
+import React, { useState } from 'react';
+import { Typography, TextField, Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '../globals/routes';
+import useStyles from './style';
 
 export default function Login () {
   const classes = useStyles();
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////------------------------- registration testing-------------------------------- /////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  const [form, setForm] = useState({email: '', password: ''});
-  const [error, setError] = useState({email: "", password: "", message: ""});
-  const [message, setMessage] = useState('');
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  }
-  
-  const registerHandler = async () => {
-    setError({ email: "", password: "", message: "" });
-    setMessage("")
-    try {
-      const request = await axios.post(`/api/auth/register`, {...form})
-      setMessage(request.data.message)
-      setForm({email: '', password: ''});
-    } catch (e) {
-      const data = e.response.data;
-      const isErroresExisted = 'errors' in data
-      if (isErroresExisted){
-        const email = data.errors.find(err => err.param === 'email')
-        const pass = data.errors.find(err => err.param === 'password')
-        console.log(email + " " + pass)
-        setError({ 
-          email: email ? email.msg : "",
-          password: pass ? pass.msg : "",
-          message: data.message,
-        })
-      } else {
-        setError({ ...error, message: data.message })
-      }
-    }
-  }
 
   return (
     <div className={classes.root} >
@@ -52,25 +18,29 @@ export default function Login () {
           Email 
           <TextField
             name = 'email'
-            value = {form.email}
-            onChange = {handleChange}
+            // value = {form.email}
+            // onChange = {handleChange}
             variant = "outlined"
           />
-          {error.email}
+          {/* {error.email} */}
         </div>
         <div className={classes.textField}>
           Password 
           <TextField
             name = 'password'
-            value = {form.password}
-            onChange = {handleChange}
+            // value = {form.password}
+            // onChange = {handleChange}
             variant = "outlined"
           />
-          {error.password}
+          {/* {error.password} */}
         </div>
-        { `${error.message}${message}` }
+        {/* { `${error.message}${message}` } */}
       </div>
-      <button onClick={registerHandler} >reg</button>
+      <div className={classes.buttons}>
+        <Link to="#" className={classes.link}> Forgot your password? </Link>
+        <Button className={classes.signIn}> SIGN IN </Button>
+        <Link to={ROUTES.register} className={classes.link}> Create account </Link>
+      </div>
     </div>
   )
 }

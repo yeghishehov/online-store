@@ -26,5 +26,29 @@ export default makeStyles((theme) => ({
     height: 90,
     margin: 20,
   },
-
+  buttons: {
+    height: 120,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  signIn: {
+    color: '#212529',
+    fontSize: '1rem',
+    fontWeight: '400',
+    padding: '5px 15px',
+    '&:hover': {
+      color: '#fff',
+      background: '#557b97',
+    }
+  },
+  link: {
+    color: '#007bff',
+    textDecoration: 'none',
+    '&:hover': {
+      color: '#69727b',
+      textDecoration: 'underline',
+    }
+  },
 }));
