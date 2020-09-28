@@ -11,8 +11,9 @@ router.post(
     '/register',
     [
         check('email', 'not correct email').isEmail(),
-        check('password', 'minimal 6 symbol\'s for password')
-            .isLength({min: 6})
+        check('password', 'minimal 6 symbol\'s for password').isLength({min: 6}),
+        check('firstName', 'First Name is required').notEmpty(),
+        check('lastName', 'Last Name is required').notEmpty(),
     ],
     async (req, res) => {
         try {
@@ -25,7 +26,7 @@ router.post(
                 })
             }
 
-            const {email, password} = req.body
+            const {email, password, firstName, lastName} = req.body
 
             const candidate = await User.findOne({ email })
 
@@ -34,7 +35,7 @@ router.post(
             }
 
             const hashedPasswors = await bcryptjs.hash(password, 12)
-            const user = new User({ email, password: hashedPasswors })
+            const user = new User({ email, password: hashedPasswors, firstName, lastName })
 
             await user.save()
 
@@ -49,10 +50,10 @@ router.post(
 router.post(
     '/login',
     [
-        check('email', 'not correct email').normalizeEmail().isEmpty(),
+        check('email', 'Enter correct email').normalizeEmail().isEmail(),
         check('password', 'Enter password').exists()
     ],
-    async (reg, res) => {
+    async (req, res) => {
         try {
             const errors = validationResult(req)
 
@@ -72,8 +73,9 @@ router.post(
             }
 
             const isMatch = await bcryptjs.compare(password, user.password)
+            console.log(isMatch)
 
-            if(!!isMatch) {
+            if(!isMatch) {
                 return res.status(400).json({ message: 'incorrect password'})
             }
 
@@ -86,7 +88,7 @@ router.post(
             res.json({ token, userId: user.id })
             
         } catch (error) {
-            res.status(500).json({message: 'error...'})
+            res.status(500).json({message: 'Error: ' + error})
         }
 })
 
