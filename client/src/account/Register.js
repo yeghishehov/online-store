@@ -18,14 +18,18 @@ function Register () {
       const request = await axios.post(`/api/auth/register`, {...form})
       setForm({email: '', password: '', firstName: '', lastName: ''});
       enqueueSnackbar(request.data.message, { variant: 'success' })
-    } catch (e) {
-      const data = e.response.data;
+    } catch (error) {
+      const data = error.response.data;
       const isErrorsExisted = 'errors' in data
       if (isErrorsExisted){
         const email = data.errors.find(err => err.param === 'email')
-        const pass = data.errors.find(err => err.param === 'password')
+        const password = data.errors.find(err => err.param === 'password')
+        const firstName = data.errors.find(err => err.param === 'firstName')
+        const lastNamer = data.errors.find(err => err.param === 'lastNamer')
         email && enqueueSnackbar(email.msg, { variant: 'warning' })
-        pass && enqueueSnackbar(pass.msg, { variant: 'warning' })
+        password && enqueueSnackbar(password.msg, { variant: 'warning' })
+        firstName && enqueueSnackbar(firstName.msg, { variant: 'warning' })
+        lastNamer && enqueueSnackbar(lastNamer.msg, { variant: 'warning' })
         enqueueSnackbar(data.message, { variant: 'warning' })
       } else {
         enqueueSnackbar(data.message, { variant: 'warning' })
@@ -86,7 +90,7 @@ function Register () {
 export default function IntegrationNotistack() {
   return (
     <SnackbarProvider
-      maxSnack={3}
+      maxSnack={4}
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'right',
