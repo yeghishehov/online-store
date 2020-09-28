@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Typography, TextField, Button } from '@material-ui/core';
 import { SnackbarProvider, useSnackbar } from 'notistack';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../globals/routes';
 import axios from '../utils/axiosConfig';
+import { AuthContext } from '../context/AuthContext';
 import useStyles from './style';
 
 function Login () {
   const classes = useStyles();
+  const auth = useContext(AuthContext)
   const [form, setForm] = useState({ email: '', password: '' });
   const { enqueueSnackbar } = useSnackbar();
   
@@ -18,7 +20,7 @@ function Login () {
   const loginHandler = async () => {
     try {
       const request = await axios.post(`/api/auth/login`, {...form})
-      enqueueSnackbar(request.data.message, { variant: 'success' })
+      auth.login(request.data.token, request.data.userId)
     } catch (error) {
       const data = error.response.data;
       const isErrorsExisted = 'errors' in data

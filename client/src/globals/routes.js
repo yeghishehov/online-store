@@ -25,4 +25,5 @@ export const ROUTES = {
 
   login: '/account/login',
   register: '/account/register',
+  authPage: '/account/my-page',
 };
