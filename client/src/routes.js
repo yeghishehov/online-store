@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {Switch, Route} from 'react-router-dom';
 import { ROUTES } from './globals/routes';
 
@@ -20,61 +20,84 @@ import Legal from './pages/legal/Legal'
 import Login from './account/Login'
 import Register from './account/Register'
 import AuthPage from './pages/AuthPage'; 
+import axios from './utils/axiosConfig';
 
-export const useRoutes = isAuthenticated => {
-    if (isAuthenticated) {
+export const useRoutes = () => {
+    const [isAuthorized, setIsAuthorized] = useState(false)
+
+    const checkingAuthorization = async () => {
+        const data = JSON.parse(localStorage.getItem('userData'));
+        if(data && data.token) {
+            try {
+                const aaa = await axios.post('/api/auth/isAuthorized', { token: data.token})
+                setIsAuthorized(aaa.data)
+            } catch (error) {
+                console.log( error.response.data )
+                setIsAuthorized(false)
+                localStorage.removeItem('userData')
+            }
+        }
+    }
+
+    useEffect(() => {
+        checkingAuthorization()
+    }, [])
+
+
+
+    if (isAuthorized) {
         return(
             <Switch>
             <Route exact path={ROUTES.home}>
-            <Home />
+                <Home />
             </Route>
             <Route path={ROUTES.men}>
-            <Men />
+                <Men />
             </Route>
             <Route path={ROUTES.women}>
-            <Women />
+                <Women />
             </Route>
             <Route path={ROUTES.outlet}>
-            <Outlet />
+                <Outlet />
             </Route>
 
 
             <Route path={ROUTES.shipment}>
-            <Shipment />
+                <Shipment />
             </Route>
             <Route path={ROUTES.exchanges}>
-            <Exchanges />
+                <Exchanges />
             </Route>
             <Route path={ROUTES.sizeChart}>
-            <SizeChart />
+                <SizeChart />
             </Route>
             <Route path={ROUTES.faq}>
-            <Faq />
+                <Faq />
             </Route>
             <Route path={ROUTES.returns}>
-            <Returns />
+                <Returns />
             </Route>
 
             <Route path={ROUTES.dressYourProject}>
-            <DressYourProject />
+                <DressYourProject />
             </Route>
             <Route path={ROUTES.design}>
-            <Design />
+                <Design />
             </Route>
             <Route path={ROUTES.officialStores}>
-            <OfficialStores />
+                <OfficialStores />
             </Route>
             <Route path={ROUTES.legal}>
-            <Legal />
+                <Legal />
             </Route>
             <Route path={ROUTES.about}>
-            <About />
+                <About />
             </Route>
             <Route path={ROUTES.contact}>
-            <Contact />
+                <Contact />
             </Route>
 
-            <Route path={ROUTES.register}>
+            <Route path={ROUTES.authPage}>
                 <AuthPage />
             </Route>
         </Switch>
@@ -84,59 +107,59 @@ export const useRoutes = isAuthenticated => {
     return(
         <Switch>
             <Route exact path={ROUTES.home}>
-            <Home />
+                <Home />
             </Route>
             <Route path={ROUTES.men}>
-            <Men />
+                <Men />
             </Route>
             <Route path={ROUTES.women}>
-            <Women />
+                <Women />
             </Route>
             <Route path={ROUTES.outlet}>
-            <Outlet />
+                <Outlet />
             </Route>
 
 
             <Route path={ROUTES.shipment}>
-            <Shipment />
+                <Shipment />
             </Route>
             <Route path={ROUTES.exchanges}>
-            <Exchanges />
+                <Exchanges />
             </Route>
             <Route path={ROUTES.sizeChart}>
-            <SizeChart />
+                <SizeChart />
             </Route>
             <Route path={ROUTES.faq}>
-            <Faq />
+                <Faq />
             </Route>
             <Route path={ROUTES.returns}>
-            <Returns />
+                <Returns />
             </Route>
 
             <Route path={ROUTES.dressYourProject}>
-            <DressYourProject />
+                <DressYourProject />
             </Route>
             <Route path={ROUTES.design}>
-            <Design />
+                <Design />
             </Route>
             <Route path={ROUTES.officialStores}>
-            <OfficialStores />
+                <OfficialStores />
             </Route>
             <Route path={ROUTES.legal}>
-            <Legal />
+                <Legal />
             </Route>
             <Route path={ROUTES.about}>
-            <About />
+                <About />
             </Route>
             <Route path={ROUTES.contact}>
-            <Contact />
+                <Contact />
             </Route>
 
             <Route path={ROUTES.login}>
-            <Login />
+                <Login />
             </Route>
             <Route path={ROUTES.register}>
-            <Register />
+                <Register />
             </Route>
         </Switch>
     )

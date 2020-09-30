@@ -21,6 +21,7 @@ function Login () {
     try {
       const request = await axios.post(`/api/auth/login`, {...form})
       auth.login(request.data.token, request.data.userId)
+      window.location.href = "http://localhost:3000/account/my-page"
     } catch (error) {
       const data = error.response.data;
       const isErrorsExisted = 'errors' in data

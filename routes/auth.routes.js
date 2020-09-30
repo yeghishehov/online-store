@@ -4,6 +4,7 @@ const config = require('config')
 const jwt = require('jsonwebtoken')
 const {check, validationResult} = require('express-validator')
 const User = require('../models/user')
+const auth = require('../middleware/auth.middleware')
 const router = Router()
 
 // /api/auth/register
@@ -73,7 +74,6 @@ router.post(
             }
 
             const isMatch = await bcryptjs.compare(password, user.password)
-            console.log(isMatch)
 
             if(!isMatch) {
                 return res.status(400).json({ message: 'incorrect password'})
@@ -87,6 +87,15 @@ router.post(
 
             res.json({ token, userId: user.id })
             
+        } catch (error) {
+            res.status(500).json({message: 'Error: ' + error})
+        }
+})
+
+// /api/auth/isAuthorized
+router.post('/isAuthorized', auth, async (req, res) => {
+        try {
+            res.json(true)
         } catch (error) {
             res.status(500).json({message: 'Error: ' + error})
         }

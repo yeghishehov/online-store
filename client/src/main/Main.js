@@ -4,7 +4,7 @@ import Footer from '../components/footer/Footer'
 import { useRoutes } from '../routes';
 
 export default function Main() {
-  const routes = useRoutes(false);
+  const routes = useRoutes();
 
   return (
     <div>
