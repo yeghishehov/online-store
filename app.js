@@ -7,8 +7,8 @@ const app = express()
 app.use(express.json({ extended: true }))
 
 app.use('/api/auth', require('./routes/auth.routes'))
-
 app.use('/app/shoes', require('./routes/shoes.routers'))
+app.use('/api/collections', require('./routes/collections.routes'))
 
 const PORT = config.get('port') || 5000
 
