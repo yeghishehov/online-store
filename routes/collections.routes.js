@@ -2,7 +2,7 @@ const router = require('express').Router()
 const collectionsController = require('../controllers/collections.controller')
 
 // /api/collections/
-router.post('/men', collectionsController.men)
+router.get('/men', collectionsController.men)
 router.get('/women', collectionsController.women)
 router.get('/outlet', collectionsController.outlet)
 router.get('/flat-rate-46', collectionsController.flatRate46)
