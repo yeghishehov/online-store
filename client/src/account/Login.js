@@ -19,8 +19,8 @@ function Login () {
 
   const loginHandler = async () => {
     try {
-      const request = await axios.post(`/api/auth/login`, {...form})
-      auth.login(request.data.token, request.data.userId)
+      const response = await axios.post(`/api/auth/login`, {...form})
+      auth.login(response.data.token, response.data.userId)
       window.location.href = "http://localhost:3000/account/my-page"
     } catch (error) {
       const data = error.response.data;
@@ -28,11 +28,11 @@ function Login () {
       if (isErrorsExisted){
         const email = data.errors.find(err => err.param === 'email')
         const password = data.errors.find(err => err.param === 'password')
-        email && enqueueSnackbar(email.msg, { variant: 'warning' })
-        password && enqueueSnackbar(password.msg, { variant: 'warning' })
-        enqueueSnackbar(data.message, { variant: 'warning' })
+        email && enqueueSnackbar(email.msg, { variant: 'warning', autoHideDuration: 2000 })
+        password && enqueueSnackbar(password.msg, { variant: 'warning', autoHideDuration: 2000 })
+        enqueueSnackbar(data.message, { variant: 'warning', autoHideDuration: 2000 })
       } else {
-        enqueueSnackbar(data.message, { variant: 'warning' })
+        enqueueSnackbar(data.message, { variant: 'warning', autoHideDuration: 2000, })
       }
     }
   }
