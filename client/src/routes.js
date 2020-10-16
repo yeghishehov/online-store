@@ -26,11 +26,11 @@ export const useRoutes = () => {
     const [isAuthorized, setIsAuthorized] = useState(false)
 
     const checkingAuthorization = async () => {
-        const data = JSON.parse(localStorage.getItem('userData'));
-        if(data && data.token) {
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        if(userData && userData.token) {
             try {
-                const aaa = await axios.post('/api/auth/isAuthorized', { token: data.token})
-                setIsAuthorized(aaa.data)
+                const response = await axios.post('/api/auth/isAuthorized', { token: userData.token})
+                setIsAuthorized(response.data)
             } catch (error) {
                 console.log( error.response.data )
                 setIsAuthorized(false)
@@ -60,7 +60,6 @@ export const useRoutes = () => {
             <Route path={ROUTES.outlet}>
                 <Outlet />
             </Route>
-
 
             <Route path={ROUTES.shipment}>
                 <Shipment />
@@ -118,7 +117,6 @@ export const useRoutes = () => {
             <Route path={ROUTES.outlet}>
                 <Outlet />
             </Route>
-
 
             <Route path={ROUTES.shipment}>
                 <Shipment />
