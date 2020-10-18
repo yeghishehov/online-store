@@ -1,66 +1,69 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import { Typography, TextField, Button } from '@material-ui/core';
 import { SnackbarProvider, useSnackbar } from 'notistack';
-import { Link } from 'react-router-dom';
-import { ROUTES } from '../globals/routes';
-import axios from '../utils/axiosConfig';
-import { AuthContext } from '../context/AuthContext';
+import { useAuthContext } from '../contexts/authContext';
+import { loginRequest } from '../API/authApi';
+import ROUTES from '../globals/routes';
 import useStyles from './style';
 
-function Login () {
+function Login() {
   const classes = useStyles();
-  const auth = useContext(AuthContext)
+  const { login, isAuthorized } = useAuthContext();
   const [form, setForm] = useState({ email: '', password: '' });
   const { enqueueSnackbar } = useSnackbar();
-  
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-  }
+  };
 
   const loginHandler = async () => {
     try {
-      const request = await axios.post(`/api/auth/login`, {...form})
-      auth.login(request.data.token, request.data.userId)
-      window.location.href = "http://localhost:3000/account/my-page"
+      const response = await loginRequest(form);
+      login(response.data.token, response.data.userId);
     } catch (error) {
-      const data = error.response.data;
-      const isErrorsExisted = 'errors' in data
-      if (isErrorsExisted){
-        const email = data.errors.find(err => err.param === 'email')
-        const password = data.errors.find(err => err.param === 'password')
-        email && enqueueSnackbar(email.msg, { variant: 'warning' })
-        password && enqueueSnackbar(password.msg, { variant: 'warning' })
-        enqueueSnackbar(data.message, { variant: 'warning' })
+      const { data } = error.response;
+      const isErrorsExisted = 'errors' in data;
+
+      if (isErrorsExisted) {
+        const email = data.errors.find((err) => err.param === 'email');
+        const password = data.errors.find((err) => err.param === 'password');
+
+        if (email) enqueueSnackbar(email.msg, { variant: 'warning' });
+        if (password) enqueueSnackbar(password.msg, { variant: 'warning' });
+
+        enqueueSnackbar(data.message, { variant: 'warning' });
       } else {
-        enqueueSnackbar(data.message, { variant: 'warning' })
+        enqueueSnackbar(data.message, { variant: 'warning' });
       }
     }
-  }
+  };
 
+  if (isAuthorized) return <Redirect to={ROUTES.authPage} />;
 
   return (
-    <div className={classes.root} >
-      <Typography align='center' variant='h3' >
+    <div className={classes.root}>
+      <Typography align="center" variant="h3">
         Login
       </Typography>
 
       <div className={classes.input}>
         <div className={classes.textField}>
-          Email 
+          Email
           <TextField
-            name = 'email'
-            value = {form.email}
-            onChange = {handleChange}
-            variant = "outlined"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            variant="outlined"
           />
         </div>
         <div className={classes.textField}>
-          Password 
+          Password
           <TextField
-            name = 'password'
-            value = {form.password}
-            onChange = {handleChange}
-            variant = "outlined"
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+            variant="outlined"
           />
         </div>
       </div>
@@ -70,7 +73,7 @@ function Login () {
         <Link to={ROUTES.register} className={classes.link}> Create account </Link>
       </div>
     </div>
-  )
+  );
 }
 
 export default function IntegrationNotistack() {
@@ -80,7 +83,7 @@ export default function IntegrationNotistack() {
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'right',
-      }}  
+      }}
     >
       <Login />
     </SnackbarProvider>
