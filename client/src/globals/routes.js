@@ -1,4 +1,4 @@
-export const ROUTES = {
+export default {
   home: '/',
 
   men: '/collections/men',
@@ -15,7 +15,7 @@ export const ROUTES = {
   returns: '/pages/returns',
   sizeChart: '/pages/size-chart',
   faq: '/pages/faq',
-  
+
   contact: '/pages/contact',
   about: '/pages/about',
   dressYourProject: '/pages/dress-your-project',
