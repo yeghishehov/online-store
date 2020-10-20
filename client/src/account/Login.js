@@ -20,7 +20,7 @@ function Login() {
   const loginHandler = async () => {
     try {
       const response = await loginRequest(form);
-      login(response.data.token, response.data.userId);
+      login(response.data.token, response.data.name);
     } catch (error) {
       const { data } = error.response;
       const isErrorsExisted = 'errors' in data;
