@@ -2,15 +2,11 @@ const Shoes = require('../models/shoes')
 
 module.exports.add = async (req, res) => {
     try {
-        const {name, type, collection_name, price, sizes, description, media} = req.body
+        const {shoesName, type, collectionName, price, description, color} = req.body
+        const sizes = req.body.sizes ? req.body.sizes.split(' ') : []
+        const imagesSrc = req.files ? req.files.map(file => file.path.replace(/\\/g, '/')) : []
 
-        const product = await Shoes.findOne({ name })
-
-        if (product) {
-            return res.status(400).json({ message: 'Product with this name is already registered' })
-        }
-
-        const shoes = new Shoes({ name, type, collection_name, price, sizes, description, media, })
+        const shoes = new Shoes({ shoesName, type, collectionName, price, sizes, description, color, imagesSrc })
 
         await shoes.save();
 

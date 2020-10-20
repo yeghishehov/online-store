@@ -1,6 +1,6 @@
 const multer = require('multer')
 const moment = require('moment')
-const path = "./uploads";
+const path = "./images";
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
         const date = moment().format('DDMMYYY_HHmmss_SSS');
         cb(null, `${date}_${file.originalname}`);
-    }    
+    }
 })
 
 const fileFilter = (req, file, cb) => {
