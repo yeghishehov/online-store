@@ -1,8 +1,8 @@
-const { Router } = require('express')
+const express = require('express')
+const router = express.Router()
 const {check} = require('express-validator')
 const authController = require('../controllers/auth.controller')
-const auth = require('../middleware/auth.middleware')
-const router = Router()
+const passport = require('passport')
 
 // /api/auth/register
 router.post(
@@ -27,6 +27,6 @@ router.post(
 )
 
 // /api/auth/isAuthorized
-router.post('/isAuthorized', auth, authController.isAuthorized)
+router.get('/isAuthorized', passport.authenticate('jwt', {session: false}), authController.isAuthorized)
 
 module.exports = router
