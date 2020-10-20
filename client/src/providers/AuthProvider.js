@@ -5,12 +5,12 @@ import { AuthContext } from '../contexts/authContext';
 
 export default function AuthProvider({ children }) {
   const {
-    login, logout, token, userId, isAuthorized, setIsAuthorized,
+    login, logout, token, name, isAuthorized, setIsAuthorized,
   } = useAuth();
 
   return (
     <AuthContext.Provider value={{
-      login, logout, token, userId, isAuthorized, setIsAuthorized,
+      login, logout, token, name, isAuthorized, setIsAuthorized,
     }}
     >
       {children}
