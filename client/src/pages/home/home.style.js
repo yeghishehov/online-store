@@ -5,7 +5,6 @@ export default makeStyles((theme) => ({
     // display: 'flex',
     // justifyContent: 'space-between',
     [theme.breakpoints.down('sm')]: {
-      
     },
   },
   typography: {
@@ -17,7 +16,7 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     width: '100%',
     height: 700,
-    background: `url(${"https://cdn.shopify.com/s/files/1/1241/4530/files/nuevo_chica_1.jpg"}) 100% 100% no-repeat`,
+    background: `url(${'https://cdn.shopify.com/s/files/1/1241/4530/files/nuevo_chica_1.jpg'}) 100% 100% no-repeat`,
     backgroundSize: '100%',
   },
   link: {
@@ -28,7 +27,7 @@ export default makeStyles((theme) => ({
     borderBottom: '1px solid #fff',
     '&:hover': {
       borderBottom: '1px solid #ccc',
-      color: '#ccc'
+      color: '#ccc',
     },
   },
   linkContainer: {
@@ -39,17 +38,17 @@ export default makeStyles((theme) => ({
     height: 300,
   },
   heroInner: {
-    background: `url(${"https://cdn.shopify.com/s/files/1/1241/4530/files/New_Home_v211_1500x_e73cf390-c6a7-453e-9b1f-8e506fcc1c0b.jpg"}) no-repeat`,
+    background: `url(${'https://cdn.shopify.com/s/files/1/1241/4530/files/New_Home_v211_1500x_e73cf390-c6a7-453e-9b1f-8e506fcc1c0b.jpg'}) no-repeat`,
     backgroundSize: '100%',
     height: 470,
-    marginTop: -140
+    marginTop: -140,
   },
   textContainer: {
     display: 'flex',
     width: '100%',
     height: 400,
     background: '#000',
-    marginTop: -25
+    marginTop: -25,
   },
   text1: {
     width: '40vw',
@@ -81,7 +80,7 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-end',
-    background: `url(${"https://cdn.shopify.com/s/files/1/1241/4530/files/MUROEXE-MOCHILAS-AMARILLA-01_36d91dca-007c-4d67-a1e7-1fdc952031be.jpg"}) no-repeat`,
+    background: `url(${'https://cdn.shopify.com/s/files/1/1241/4530/files/MUROEXE-MOCHILAS-AMARILLA-01_36d91dca-007c-4d67-a1e7-1fdc952031be.jpg'}) no-repeat`,
     backgroundSize: 'cover',
     backgroundPosition: 'bottom',
     width: '49.25vw',
@@ -92,7 +91,7 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-end',
-    background: `url(${"https://cdn.shopify.com/s/files/1/1241/4530/files/TEXTIL.png"}) no-repeat`,
+    background: `url(${'https://cdn.shopify.com/s/files/1/1241/4530/files/TEXTIL.png'}) no-repeat`,
     backgroundSize: 'cover',
     backgroundPosition: 'bottom',
     width: '49.25vw',
@@ -106,25 +105,78 @@ export default makeStyles((theme) => ({
     paddingBottom: 50,
     fontSize: 64,
   },
-  instashop: {
-    display: 'flex',
-    flexWrap: 'wrap',
+  imgContainer: {
+    display: 'grid',
+    gridTemplateAreas: `'img1 img2 img3 img3 img4 img5'
+                        'img6 img7 img3 img3 img8 img9'`,
+    justifyContent: 'center',
+    background: '#000',
+    cursor: 'pointer',
+    height: 433,
+    '&:hover $imgCenter': {
+      transform: 'scale(1.05)',
+    },
   },
   img: {
     height: 216,
     width: 216,
+    opacity: 0.9,
   },
-  grow: {
-    flexGrow: 1,
-    height: 433,
-    width: 433,
-    background: `url(${"https://m.photoslurp.com/i/fit?width=720&height=720&url=https%3A%2F%2Fstorage.googleapis.com%2Fpslurpmedia%2Finstagram-business%2F17860360942911146_0.jpg"})  no-repeat`,
-    backgroundSize: 'cover',
+  imgCenter: {
+    height: 429,
+    width: 432,
+    transition: '5s',
+    opacity: 0.6,
   },
-  square: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    height: 433,
-    width: 433,
-  }
+  instashop: {
+    color: 'white',
+    position: 'absolute',
+    marginLeft: '11%',
+    marginTop: '14%',
+    border: '2px white solid',
+    padding: 10,
+    fontWeight: '500',
+    zIndex: 10,
+    transition: '.5s',
+    '&:hover': {
+      transform: 'scale(1.05)',
+      background: '#000',
+    },
+  },
+  imgWrap1: {
+    gridArea: 'img1',
+    overflow: 'hidden',
+  },
+  imgWrap2: {
+    gridArea: 'img2',
+    overflow: 'hidden',
+  },
+  imgWrap3: {
+    gridArea: 'img3',
+    overflow: 'hidden',
+  },
+  imgWrap4: {
+    gridArea: 'img4',
+    overflow: 'hidden',
+  },
+  imgWrap5: {
+    gridArea: 'img5',
+    overflow: 'hidden',
+  },
+  imgWrap6: {
+    gridArea: 'img6',
+    overflow: 'hidden',
+  },
+  imgWrap7: {
+    gridArea: 'img7',
+    overflow: 'hidden',
+  },
+  img8: {
+    gridArea: 'img8',
+    overflow: 'hidden',
+  },
+  imgWrap9: {
+    gridArea: 'img9',
+    overflow: 'hidden',
+  },
 }));

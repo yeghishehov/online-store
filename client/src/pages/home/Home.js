@@ -5,6 +5,16 @@ import Collections from './collections/Collections';
 import ROUTES from '../../globals/routes';
 import useStyles from './home.style';
 
+import img1 from '../../assets/images/1.jpg';
+import img2 from '../../assets/images/2.jpg';
+import img3 from '../../assets/images/3.jpg';
+import img4 from '../../assets/images/4.jpg';
+import img5 from '../../assets/images/5.jpg';
+import img6 from '../../assets/images/6.jpg';
+import img7 from '../../assets/images/7.jpg';
+import img8 from '../../assets/images/8.jpg';
+import img9 from '../../assets/images/9.jpg';
+
 export default function Home() {
   const classes = useStyles();
 
@@ -46,10 +56,12 @@ export default function Home() {
 
       <div className={classes.textContainer}>
         <div className={classes.text1}>
-          We dress a generation of urban professionals, creatives and innovators that need functional yet modern products for their everyday lives.
+          We dress a generation of urban professionals, creatives and
+          innovators that need functional yet modern products for their everyday lives.
         </div>
         <div className={classes.text2}>
-          We have sold more than 250K pairs. We have customers in more than 51 countries. We sell in more tan 320 shops all around the globe.
+          We have sold more than 250K pairs. We have customers in more
+          than 51 countries. We sell in more tan 320 shops all around the globe.
           <div className={classes.hashtag}>#dothefuture</div>
         </div>
       </div>
@@ -78,22 +90,36 @@ export default function Home() {
         </div>
       </div>
 
-      <div className={classes.instashop}>
-        <div className={classes.square}>
-          <img className={classes.img} src="https://m.photoslurp.com/i/fit?width=287&height=360&url=https%3A%2F%2Fstorage.googleapis.com%2Fpslurpmedia%2Finstagram-business%2F18110110657082281_0.jpg" alt="" />
-          <img className={classes.img} src="https://m.photoslurp.com/i/fit?width=360&height=360&url=https%3A%2F%2Fstorage.googleapis.com%2Fpslurpmedia%2Finstagram-business%2F17855381918074934_0.jpg" alt="" />
-          <img className={classes.img} src="https://m.photoslurp.com/i/fit?width=360&height=360&url=https%3A%2F%2Fstorage.googleapis.com%2Fpslurpmedia%2Finstagram-business%2F18050767351210577_1.jpg" alt="" />
-          <img className={classes.img} src="https://m.photoslurp.com/i/fit?width=360&height=360&url=https%3A%2F%2Fstorage.googleapis.com%2Fpslurpmedia%2Finstagram-business%2F17981804470295469_1.jpg" alt="" />
+      <Link to="pages/galeria" className={classes.imgContainer}>
+        <div className={classes.imgWrap1}>
+          <img className={classes.img} src={img1} alt="" />
         </div>
-        <div className={classes.grow}> </div>
-        <div>
-          <img className={classes.img} src="https://m.photoslurp.com/i/fit?width=240&height=360&url=https%3A%2F%2Fstorage.googleapis.com%2Fpslurpmedia%2Finstagram-business%2F17891566750532105_0.jpg" alt="" />
-          <img className={classes.img} src="https://m.photoslurp.com/i/fit?width=360&height=304&url=https%3A%2F%2Fstorage.googleapis.com%2Fpslurpmedia%2Finstagram-business%2F17883818224495207_0.jpg" alt="" />
-          <img className={classes.img} src="https://m.photoslurp.com/i/fit?width=360&height=288&url=https%3A%2F%2Fstorage.googleapis.com%2Fpslurpmedia%2Finstagram-business%2F18084023557158795_0.jpg" alt="" />
-          <img className={classes.img} src="https://m.photoslurp.com/i/fit?width=360&height=360&url=https%3A%2F%2Fstorage.googleapis.com%2Fpslurpmedia%2Finstagram-business%2F17894157352447127_0.jpg" alt="" />
+        <div className={classes.imgWrap2}>
+          <img className={classes.img} src={img2} alt="" />
         </div>
-      </div>
-
+        <div className={classes.imgWrap3}>
+          <div className={classes.instashop}>INSTASHOP</div>
+          <img className={classes.imgCenter} src={img3} alt="" />
+        </div>
+        <div className={classes.imgWrap4}>
+          <img className={classes.img} src={img4} alt="" />
+        </div>
+        <div className={classes.imgWrap5}>
+          <img className={classes.img} src={img5} alt="" />
+        </div>
+        <div className={classes.imgWrap6}>
+          <img className={classes.img} src={img6}v alt="" />
+        </div>
+        <div className={classes.imgWrap7}>
+          <img className={classes.img} src={img7} alt="" />
+        </div>
+        <div className={classes.imgWrap8}>
+          <img className={classes.img} src={img8} alt="" />
+        </div>
+        <div className={classes.imgWrap9}>
+          <img className={classes.img} src={img9} alt="" />
+        </div>
+      </Link>
     </div>
   );
 }
