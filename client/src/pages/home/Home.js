@@ -108,7 +108,7 @@ export default function Home() {
           <img className={classes.img} src={img5} alt="" />
         </div>
         <div className={classes.imgWrap6}>
-          <img className={classes.img} src={img6}v alt="" />
+          <img className={classes.img} src={img6} alt="" />
         </div>
         <div className={classes.imgWrap7}>
           <img className={classes.img} src={img7} alt="" />

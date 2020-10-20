@@ -1,37 +1,43 @@
-import React, { useState } from 'react'
-import Radio from '@material-ui/core/Radio'
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos'
-import Button from '@material-ui/core/Button'
-import useStyles from './slider.style'
-import { SLIDES } from './slides'
+import React, { useEffect, useState, useCallback } from 'react';
+import Radio from '@material-ui/core/Radio';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import Button from '@material-ui/core/Button';
+import useStyles from './slider.style';
+import { SLIDES } from './slides';
 
 export default function Slider() {
-  const [activeSlide, setActiveSlide] = useState(0)
-  const classes = useStyles()
+  const [activeSlide, setActiveSlide] = useState(0);
+  const classes = useStyles();
 
   const handlePrevSlide = () => {
-    let slideNumber = activeSlide - 1
+    const slideNumber = activeSlide - 1;
     if (slideNumber < 0) {
-      setActiveSlide(SLIDES.length - 1)
+      setActiveSlide(SLIDES.length - 1);
     } else {
-      setActiveSlide(slideNumber)
+      setActiveSlide(slideNumber);
     }
-  }
+  };
 
-  const handleNextSlide = () => {
-    let slideNumber = activeSlide + 1
+  const handleNextSlide = useCallback(() => {
+    const slideNumber = activeSlide + 1;
     if (slideNumber === SLIDES.length) {
-      setActiveSlide(0)
+      setActiveSlide(0);
     } else {
-      setActiveSlide(slideNumber)
+      setActiveSlide(slideNumber);
     }
-
-  }
+  }, [activeSlide]);
 
   const handleRadioChange = (event) => {
-    setActiveSlide(+event.target.value)
-  }
+    setActiveSlide(+event.target.value);
+  };
+
+  useEffect(() => {
+    const interval = setTimeout(() => {
+      handleNextSlide();
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [handleNextSlide]);
 
   return (
     <div className={classes.root}>
@@ -41,8 +47,8 @@ export default function Slider() {
           <div
             key={slide}
             className={
-              activeSlide === index 
-                ? classes.active 
+              activeSlide === index
+                ? classes.active
                 : classes.hidden
             }
           >
@@ -59,9 +65,9 @@ export default function Slider() {
           <Radio
             key={slide}
             checked={index === activeSlide}
-            value={index} 
+            value={index}
             onChange={handleRadioChange}
-            size='small'
+            size="small"
           />
         ))}
         <Button onClick={handleNextSlide}>
@@ -71,6 +77,4 @@ export default function Slider() {
 
     </div>
   );
-  
 }
-
