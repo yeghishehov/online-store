@@ -1,7 +1,7 @@
 import axios from '../utils/axiosConfig';
 
-export const checkAuthorization = (token) => (
-  axios.post('/api/auth/isAuthorized', { token })
+export const checkAuthorization = () => (
+  axios.get('/api/auth/isAuthorized')
 );
 
 export const loginRequest = (form) => (
