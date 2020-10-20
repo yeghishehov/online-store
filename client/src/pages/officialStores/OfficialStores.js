@@ -18,7 +18,7 @@ export default function OfficialStores () {
       <br/>
       <p><strong>For EU-Countries:</strong> we request a pick-up at your address. The courier company in charge of it will be DHL. Notice that we will collect your products from the moment you get an email from us confirming that your pick-up has been processed. Once the products arrive in our warehouse, you will get a voucher with the same value you paid for the product you want to exchange. No matter further discounts or sale. You will get further instructions regarding the process via Email.</p>
       <br/>
-      <p><strong>For Germany:</strong>For Germany: Please follow this instructions > https://muroexe.de/pages/umtausch?noredir </p>
+      <p><strong>For Germany:</strong>For Germany: Please follow this instructions &gt https://muroexe.de/pages/umtausch?noredir </p>
       <br/>
       <p><strong>For Non-EU-Countries:</strong> If you want to EXCHANGE your order you do not have to fulfil the form. You may send the parcel on your own via Postal Service (basic rate), requesting a shipping costs receipt and send it to us via Email (userexperience@mureoxe.com). In this way, we will be able to register your request and refund up to 40$ as shipping costs.</p>
       <br/>

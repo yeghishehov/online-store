@@ -1,46 +1,62 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Typography, TextField, Button } from '@material-ui/core';
 import { SnackbarProvider, useSnackbar } from 'notistack';
-import axios from '../utils/axiosConfig';
+import { registrationRequest } from '../API/authApi';
+import ROUTES from '../globals/routes';
 import useStyles from './style';
 
-function Register () {
+function Register() {
   const classes = useStyles();
-  const [form, setForm] = useState({ email: '', password: '', firstName: '', lastName: '' });
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [form, setForm] = useState({
+    email: '', password: '', firstName: '', lastName: '',
+  });
+
   const { enqueueSnackbar } = useSnackbar();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-  }
-  
+  };
+
   const registerHandler = async () => {
     try {
-      const request = await axios.post(`/api/auth/register`, {...form})
-      setForm({email: '', password: '', firstName: '', lastName: ''});
-      enqueueSnackbar(request.data.message, { variant: 'success' })
+      const response = await registrationRequest(form);
+
+      setForm({
+        email: '', password: '', firstName: '', lastName: '',
+      });
+
+      enqueueSnackbar(response.data.message, { variant: 'success' });
+      setIsRegistered(true);
     } catch (error) {
-      const data = error.response.data;
-      const isErrorsExisted = 'errors' in data
-      if (isErrorsExisted){
-        const email = data.errors.find(err => err.param === 'email')
-        const password = data.errors.find(err => err.param === 'password')
-        const firstName = data.errors.find(err => err.param === 'firstName')
-        const lastNamer = data.errors.find(err => err.param === 'lastNamer')
-        email && enqueueSnackbar(email.msg, { variant: 'warning' })
-        password && enqueueSnackbar(password.msg, { variant: 'warning' })
-        firstName && enqueueSnackbar(firstName.msg, { variant: 'warning' })
-        lastNamer && enqueueSnackbar(lastNamer.msg, { variant: 'warning' })
-        enqueueSnackbar(data.message, { variant: 'warning' })
+      const { data } = error.response;
+
+      const isErrorsExisted = 'errors' in data;
+
+      if (isErrorsExisted) {
+        const email = data.errors.find((err) => err.param === 'email');
+        const password = data.errors.find((err) => err.param === 'password');
+        const firstName = data.errors.find((err) => err.param === 'firstName');
+        const lastNamer = data.errors.find((err) => err.param === 'lastNamer');
+
+        if (email) enqueueSnackbar(email.msg, { variant: 'warning' });
+        if (password) enqueueSnackbar(password.msg, { variant: 'warning' });
+        if (firstName) enqueueSnackbar(firstName.msg, { variant: 'warning' });
+        if (lastNamer) enqueueSnackbar(lastNamer.msg, { variant: 'warning' });
+
+        enqueueSnackbar(data.message, { variant: 'warning' });
       } else {
-        enqueueSnackbar(data.message, { variant: 'warning' })
+        enqueueSnackbar(data.message, { variant: 'warning' });
       }
     }
-  }
+  };
 
+  if (isRegistered) return <Redirect to={ROUTES.login} />;
 
   return (
-    <div className={classes.root} >
-      <Typography align='center' variant='h3' >
+    <div className={classes.root}>
+      <Typography align="center" variant="h3">
         Create Account
       </Typography>
 
@@ -48,43 +64,43 @@ function Register () {
         <div className={classes.textField}>
           First Name
           <TextField
-            name = 'firstName'
-            value = {form.firstName}
-            onChange = {handleChange}
-            variant = "outlined"
+            name="firstName"
+            value={form.firstName}
+            onChange={handleChange}
+            variant="outlined"
           />
         </div>
         <div className={classes.textField}>
           Last Name
           <TextField
-            name = 'lastName'
-            value = {form.lastName}
-            onChange = {handleChange}
-            variant = "outlined"
+            name="lastName"
+            value={form.lastName}
+            onChange={handleChange}
+            variant="outlined"
           />
         </div>
         <div className={classes.textField}>
           Email
           <TextField
-            name = 'email'
-            value = {form.email}
-            onChange = {handleChange}
-            variant = "outlined"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            variant="outlined"
           />
         </div>
         <div className={classes.textField}>
           Password
           <TextField
-            name = 'password'
-            value = {form.password}
-            onChange = {handleChange}
-            variant = "outlined"
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+            variant="outlined"
           />
         </div>
       </div>
       <Button onClick={registerHandler} className={classes.signIn}> CREATE </Button>
     </div>
-  )
+  );
 }
 
 export default function IntegrationNotistack() {
@@ -94,7 +110,7 @@ export default function IntegrationNotistack() {
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'right',
-      }}  
+      }}
     >
       <Register />
     </SnackbarProvider>

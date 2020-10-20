@@ -1,7 +1,7 @@
+const {validationResult} = require('express-validator')
 const bcryptjs = require('bcryptjs')
 const config = require('config')
 const jwt = require('jsonwebtoken')
-const {validationResult} = require('express-validator')
 const User = require('../models/user')
     
 module.exports.registration = async (req, res) => {
@@ -66,7 +66,7 @@ module.exports.login = async (req, res) => {
             { expiresIn: '1h' }
         )
 
-        res.json({ token, userId: user.id })
+        res.json({ token: `Bearer ${token}`, name: `${user.firstName} ${user.lastName}` })
         
     } catch (error) {
         res.status(500).json({message: 'Error: ' + error})
