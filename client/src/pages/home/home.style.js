@@ -13,7 +13,7 @@ export default makeStyles((theme) => ({
   collectionManWoman: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
+    // alignItems: 'center',
     width: '100%',
     height: 700,
     background: `url(${'https://cdn.shopify.com/s/files/1/1241/4530/files/nuevo_chica_1.jpg'}) 100% 100% no-repeat`,
@@ -35,7 +35,7 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
     width: 200,
-    height: 300,
+    height: 500,
   },
   heroInner: {
     background: `url(${'https://cdn.shopify.com/s/files/1/1241/4530/files/New_Home_v211_1500x_e73cf390-c6a7-453e-9b1f-8e506fcc1c0b.jpg'}) no-repeat`,
@@ -131,8 +131,8 @@ export default makeStyles((theme) => ({
   instashop: {
     color: 'white',
     position: 'absolute',
-    marginLeft: '11%',
-    marginTop: '14%',
+    marginLeft: 160,
+    marginTop: 190,
     border: '2px white solid',
     padding: 10,
     fontWeight: '500',

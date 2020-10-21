@@ -41,9 +41,6 @@ export default function AuthPage() {
       }
     }
     Object.entries(form).map((el) => formData.append(el[0], el[1]));
-    // for (const key in form) {
-    //   formData.append(key, form[key]);
-    // }
     axios.post('/api/shoes/add', formData);
   };
 
