@@ -7,7 +7,9 @@ export default function Main() {
   return (
     <div>
       <Header />
-      {routes()}
+      <div style={{ minHeight: 'calc(100vh - 525px)' }}>
+        {routes()}
+      </div>
       <Footer />
     </div>
   );

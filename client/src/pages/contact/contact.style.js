@@ -9,15 +9,12 @@ export default makeStyles((theme) => ({
     marginTop: 30,
     marginBottom: 80,
     textAlign: 'center',
-    
     [theme.breakpoints.down('sm')]: {
-      
     },
   },
   heading: {
     textAlign: 'center',
     fontSize: 40,
     fontWeight: 400,
-  }
-
+  },
 }));

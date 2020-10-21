@@ -1,17 +1,19 @@
-import React from 'react'
-import NavFooter from './navFooter/NavFooter'
-import Payments from './payments/Payments'
-import Form from './form/Form'
-import useStyles from './footer.style'
+import React from 'react';
+import NavFooter from './navFooter/NavFooter';
+import Payments from './payments/Payments';
+import Form from './form/Form';
+import useStyles from './footer.style';
 
 export default function Footer() {
-  const classes = useStyles()
+  const classes = useStyles();
 
-  return(
+  return (
     <div className={classes.root}>
       <div>
         <div className={classes.title}>
-          We are unisex, we are vegans,<br />We are #dothefuture
+          We are unisex, we are vegans,
+          <br />
+          We are #dothefuture
         </div>
         <Form />
         <div className={classes.info}>
@@ -29,5 +31,5 @@ export default function Footer() {
         </div>
       </div>
     </div>
-  )
+  );
 }

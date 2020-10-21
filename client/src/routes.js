@@ -3,9 +3,9 @@ import { Switch, Route } from 'react-router-dom';
 import ROUTES from './globals/routes';
 
 import Home from './pages/home/Home';
-import Men from './collections/men/Men';
-import Women from './collections/women/Women';
-import Outlet from './collections/outlet/Outlet';
+import Men from './pages/collections/men/Men';
+import Women from './pages/collections/women/Women';
+import Outlet from './pages/collections/outlet/Outlet';
 import Shipment from './pages/shipment/Shipment';
 import Exchanges from './pages/exchanges/Exchanges';
 import Returns from './pages/returns/Returns';
