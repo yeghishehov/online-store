@@ -17,8 +17,8 @@ import DressYourProject from './pages/dressYourProject/DressYourProject';
 import Design from './pages/design/Design';
 import OfficialStores from './pages/officialStores/OfficialStores';
 import Legal from './pages/legal/Legal';
-import Login from './account/Login';
-import Register from './account/Register';
+import Login from './components/account/Login';
+import Register from './components/account/Register';
 import AuthPage from './pages/AuthPage';
 
 export default () => (

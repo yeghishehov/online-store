@@ -1,36 +1,49 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Typography, TextField, Button } from '@material-ui/core';
 import { SnackbarProvider, useSnackbar } from 'notistack';
-import { useAuthContext } from '../contexts/authContext';
-import { loginRequest } from '../API/authApi';
-import ROUTES from '../globals/routes';
+import { registrationRequest } from '../../API/authApi';
+import ROUTES from '../../globals/routes';
 import useStyles from './style';
 
-function Login() {
+function Register() {
   const classes = useStyles();
-  const { login, isAuthorized } = useAuthContext();
-  const [form, setForm] = useState({ email: '', password: '' });
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [form, setForm] = useState({
+    email: '', password: '', firstName: '', lastName: '',
+  });
+
   const { enqueueSnackbar } = useSnackbar();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const loginHandler = async () => {
+  const registerHandler = async () => {
     try {
-      const response = await loginRequest(form);
-      login(response.data.token, response.data.name);
+      const response = await registrationRequest(form);
+
+      setForm({
+        email: '', password: '', firstName: '', lastName: '',
+      });
+
+      enqueueSnackbar(response.data.message, { variant: 'success' });
+      setIsRegistered(true);
     } catch (error) {
       const { data } = error.response;
+
       const isErrorsExisted = 'errors' in data;
 
       if (isErrorsExisted) {
         const email = data.errors.find((err) => err.param === 'email');
         const password = data.errors.find((err) => err.param === 'password');
+        const firstName = data.errors.find((err) => err.param === 'firstName');
+        const lastNamer = data.errors.find((err) => err.param === 'lastNamer');
 
         if (email) enqueueSnackbar(email.msg, { variant: 'warning' });
         if (password) enqueueSnackbar(password.msg, { variant: 'warning' });
+        if (firstName) enqueueSnackbar(firstName.msg, { variant: 'warning' });
+        if (lastNamer) enqueueSnackbar(lastNamer.msg, { variant: 'warning' });
 
         enqueueSnackbar(data.message, { variant: 'warning' });
       } else {
@@ -39,15 +52,33 @@ function Login() {
     }
   };
 
-  if (isAuthorized) return <Redirect to={ROUTES.authPage} />;
+  if (isRegistered) return <Redirect to={ROUTES.login} />;
 
   return (
     <div className={classes.root}>
       <Typography align="center" variant="h3">
-        Login
+        Create Account
       </Typography>
 
       <div className={classes.input}>
+        <div className={classes.textField}>
+          First Name
+          <TextField
+            name="firstName"
+            value={form.firstName}
+            onChange={handleChange}
+            variant="outlined"
+          />
+        </div>
+        <div className={classes.textField}>
+          Last Name
+          <TextField
+            name="lastName"
+            value={form.lastName}
+            onChange={handleChange}
+            variant="outlined"
+          />
+        </div>
         <div className={classes.textField}>
           Email
           <TextField
@@ -67,11 +98,7 @@ function Login() {
           />
         </div>
       </div>
-      <div className={classes.buttons}>
-        <Link to="#" className={classes.link}> Forgot your password? </Link>
-        <Button onClick={loginHandler} className={classes.signIn}> SIGN IN </Button>
-        <Link to={ROUTES.register} className={classes.link}> Create account </Link>
-      </div>
+      <Button onClick={registerHandler} className={classes.signIn}> CREATE </Button>
     </div>
   );
 }
@@ -85,7 +112,7 @@ export default function IntegrationNotistack() {
         horizontal: 'right',
       }}
     >
-      <Login />
+      <Register />
     </SnackbarProvider>
   );
 }
