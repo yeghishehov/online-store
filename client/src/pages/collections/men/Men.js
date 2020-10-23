@@ -10,7 +10,7 @@ export default function Men() {
 
   useEffect(() => {
     dispatch(getProducts(ROUTES.men));
-  }, []);
+  }, [dispatch]);
 
   if (loading) {
     return <div>Loading...</div>;

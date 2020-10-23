@@ -10,7 +10,7 @@ export default function Outlet() {
 
   useEffect(() => {
     dispatch(getProducts(ROUTES.outlet));
-  }, []);
+  }, [dispatch]);
 
   if (loading) {
     return <div>Loading...</div>;

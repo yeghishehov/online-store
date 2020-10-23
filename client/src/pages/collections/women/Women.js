@@ -10,7 +10,7 @@ export default function Women() {
 
   useEffect(() => {
     dispatch(getProducts(ROUTES.women));
-  }, []);
+  }, [dispatch]);
 
   if (loading) {
     return <div>Loading...</div>;
