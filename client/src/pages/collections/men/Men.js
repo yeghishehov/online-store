@@ -1,9 +1,16 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import getProducts from '../../../store/actions/products';
 import { baseUrl } from '../../../utils/parameters';
+import ROUTES from '../../../globals/routes';
 
 export default function Men() {
+  const dispatch = useDispatch();
   const { data, loading, error } = useSelector((state) => state.products);
+
+  useEffect(() => {
+    dispatch(getProducts(ROUTES.men));
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>;
