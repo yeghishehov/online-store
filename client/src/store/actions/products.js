@@ -1,5 +1,8 @@
 import { GET_PRODUCTS, GET_PRODUCTS_SUCCESS, GET_PRODUCTS_FAILURE } from './constants';
-import { getAllProducts } from '../../API/productApi';
+import {
+  getAllRequest, getMenRequest, getWomenRequest, getOutletRequest,
+} from '../../API/productApi';
+import ROUTES from '../../globals/routes';
 
 const getProductsLoading = () => ({
   type: GET_PRODUCTS,
@@ -15,10 +18,27 @@ const getProductsFailure = (error) => ({
   error,
 });
 
-export default () => async (dispatch) => {
+export default (route) => async (dispatch) => {
   dispatch(getProductsLoading());
   try {
-    const response = await getAllProducts();
+    let response;
+    switch (route) {
+      case ROUTES.men: {
+        response = await getMenRequest();
+        break;
+      }
+      case ROUTES.women: {
+        response = await getWomenRequest();
+        break;
+      }
+      case ROUTES.outlet: {
+        response = await getOutletRequest();
+        break;
+      }
+      default: {
+        response = await getAllRequest();
+      }
+    }
     dispatch(getProductsSuccess(response.data));
   } catch (error) {
     dispatch(getProductsFailure(`${error}`));
