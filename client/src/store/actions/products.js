@@ -16,11 +16,11 @@ const getProductsFailure = (error) => ({
 });
 
 export default () => async (dispatch) => {
-  getProductsLoading();
+  dispatch(getProductsLoading());
   try {
     const response = await getAllProducts();
     dispatch(getProductsSuccess(response.data));
   } catch (error) {
-    dispatch(getProductsFailure(error));
+    dispatch(getProductsFailure(`${error}`));
   }
 };
