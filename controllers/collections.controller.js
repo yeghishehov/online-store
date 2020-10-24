@@ -2,7 +2,7 @@ const Shoes = require('../models/shoes')
 
 module.exports.men = async (req, res) => {
     try {
-        const shoes = await Shoes.find({ 'collectionName': 'Man' })        
+        const shoes = await Shoes.find({ 'collectionName': 'Men' })        
         if(!shoes) {
             return res.status(400).json({ message: 'Collection is not existed'})
         }
