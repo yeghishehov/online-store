@@ -6,6 +6,7 @@ import Home from './pages/home/Home';
 import Men from './pages/collections/men/Men';
 import Women from './pages/collections/women/Women';
 import Outlet from './pages/collections/outlet/Outlet';
+import Product from './pages/collections/product/Product';
 import Shipment from './pages/shipment/Shipment';
 import Exchanges from './pages/exchanges/Exchanges';
 import Returns from './pages/returns/Returns';
@@ -24,9 +25,13 @@ import AuthPage from './pages/AuthPage';
 export default () => (
   <Switch>
     <Route exact path={ROUTES.home} component={Home} />
-    <Route path={ROUTES.men} component={Men} />
-    <Route path={ROUTES.women} component={Women} />
-    <Route path={ROUTES.outlet} component={Outlet} />
+    <Route exact path={ROUTES.men} component={Men} />
+    <Route exact path={ROUTES.women} component={Women} />
+    <Route exact path={ROUTES.outlet} component={Outlet} />
+
+    <Route path={`${ROUTES.men}/:product`} component={Product} />
+    <Route path={`${ROUTES.women}/:product`} component={Product} />
+    <Route path={`${ROUTES.outlet}/:product`} component={Product} />
 
     <Route path={ROUTES.shipment} component={Shipment} />
     <Route path={ROUTES.exchanges} component={Exchanges} />
