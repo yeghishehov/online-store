@@ -2,7 +2,7 @@ import { GET_PRODUCTS, GET_PRODUCTS_SUCCESS, GET_PRODUCTS_FAILURE } from '../act
 
 const initialState = {
   data: [],
-  loading: false,
+  loading: true,
   error: '',
 };
 

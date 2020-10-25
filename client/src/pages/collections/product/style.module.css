@@ -1,53 +1,120 @@
 .gridContainer {
     display: grid;
-    grid-template-columns: 1fr 0.5fr;
-    grid-template-rows: 1fr 0.5fr;
-    gap: 0px 0px;
-    grid-template-areas:
-      "imgFull information"
-      "imgs information";
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 5%;
+    grid-row-gap: 50px;
     justify-items: center;
     margin-top: 50px;
     margin-bottom: 50px;
 }
   
 .information {
-    grid-area: information;
+    grid-area: 1 / 5 / 6 / 7;
+    overflow: hidden;
 }
   
 .imgFull {
-    grid-area: imgFull;
-    width: 60%;
+    grid-area: 1 / 2 / 4 / 5;
+    width: 100%;
+    /* max-height: 500px; */
+    overflow: hidden;
 }
   
 .imgs {
+    grid-area: 4 / 2 / 6 / 5;
+    width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 0.5fr;
-    gap: 0px 0px;
-    grid-template-areas:
-        ". . . .";
-    grid-area: imgs;
-    width: 60%;
+    overflow: hidden;
 }
 .imgContainer {
-    margin: 0 1%;
-    padding-bottom: 10px;
     outline: none;
+    overflow: hidden;
 }
 .imgContainer:hover {
     opacity: 0.7;
+    overflow: hidden;
 }
-.imgContainer:focus {
-    opacity: 0.7;
-    border-bottom: 1px black solid;
+.imgContainerFocus {
+    border-bottom: 2px black solid;
     transform: scale(1.05);
     -webkit-transform: scale(1.05);
     -moz-transform: scale(1.05);
     -ms-transform: scale(1.05);
     -o-transform: scale(1.05);
+    padding-bottom: 10px;
+    outline: none;
+    overflow: hidden;
+}
+.img {
+    width: 100%;
+    overflow: hidden;
+}
+.sameImgs {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+}
+.sameImgContainer {
+    width: 25%;
+    overflow: hidden;
+}
+.sameImgContainer:hover {
+    opacity: 0.7;
+    overflow: hidden;
+}
+.sameImgContainerFocus {
+    width: 25%;
+    border-bottom: 2px black solid;
+    overflow: hidden;
+}
+.sameImg {
+    width: 100%;
+    overflow: hidden;
 }
 
-img {
+.title {
+    font-size: 22px;
+    line-height: 24px;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-family: "Work Sans",sans-serif;
+}
+.price {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+.description {
+    color: #69727b;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 35px;
+}
+.colorsContainer {
+    margin-bottom: 20px;
+}
+.colorsText {
+    padding-bottom: 10px;
+}
+.sizeContainer {
+    margin-bottom: 20px;
+}
+.sizeText {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.sizeSelect {
+    width: 100%
+}
+.button {
+    width: 100%
+}
+
+.error404 {
     width: 100%;
 }
