@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Typography, TextField, Button } from '@material-ui/core';
 import { SnackbarProvider, useSnackbar } from 'notistack';
+import initUser from '../../store/actions/user';
 import { useAuthContext } from '../../contexts/authContext';
 import { loginRequest } from '../../API/authApi';
 import ROUTES from '../../globals/routes';
@@ -9,6 +11,7 @@ import useStyles from './style';
 
 function Login() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const { login, isAuthorized } = useAuthContext();
   const [form, setForm] = useState({ email: '', password: '' });
   const { enqueueSnackbar } = useSnackbar();
@@ -20,10 +23,11 @@ function Login() {
   const loginHandler = async () => {
     try {
       const response = await loginRequest(form);
-      login(response.data.token, response.data.name);
+      login(response.data.token);
+      dispatch(initUser(response.data.user));
     } catch (error) {
-      const { data } = error.response;
-      const isErrorsExisted = 'errors' in data;
+      const data = error.response && error.response.data;
+      const isErrorsExisted = data && 'errors' in data;
 
       if (isErrorsExisted) {
         const email = data.errors.find((err) => err.param === 'email');
@@ -34,7 +38,7 @@ function Login() {
 
         enqueueSnackbar(data.message, { variant: 'warning' });
       } else {
-        enqueueSnackbar(data.message, { variant: 'warning' });
+        enqueueSnackbar(error, { variant: 'warning' });
       }
     }
   };
