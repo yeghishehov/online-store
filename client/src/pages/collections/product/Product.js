@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import getProducts from '../../../store/actions/products';
+import {  getOrder, createOrder, removeOrder } from '../../../store/actions/orders';
 import ROUTES from '../../../globals/routes';
 import { baseUrl } from '../../../utils/parameters';
 import error404 from '../../../assets/images/HTML-Error-Page.png';
@@ -13,6 +14,7 @@ import classes from './style.module.css';
 export default function Product({ location }) {
   const dispatch = useDispatch();
   const { data, loading, error } = useSelector((state) => state.products);
+  const { data: dataOrders, loading: orderLoading } = useSelector((state) => state.orders);
   const [selectedImg, setSelectedImg] = useState(0);
   const [selectedSize, setSelectedSize] = useState(0);
 
@@ -48,6 +50,52 @@ export default function Product({ location }) {
   const handleSelectSize = (e) => {
     setSelectedSize(e.target.value)
   }
+
+  const handleCreateOrder = async (e) => {
+    e.currentTarget.disabled = true;
+
+    const optionsOrder = {
+      collectionName: product.collectionName,
+      type: product.type,
+      shoesName: product.shoesName,
+      color: product.color,
+      price: product.price,
+      size: product.sizes[selectedSize],
+      imagesSrc: product.imagesSrc[0],
+      productPageSrc: location.pathname,
+    }
+
+    await dispatch(createOrder(optionsOrder))
+
+    dispatch(getOrder())
+  }
+
+  const handleRemoveOrder = async (e) => {
+    e.currentTarget.disabled = true;
+
+    const selectedOrder = dataOrders.find(el => (
+      el.collectionName === product.collectionName &&
+      el.type === product.type &&
+      el.shoesName === product.shoesName &&
+      el.color === product.color &&
+      el.size === product.sizes[selectedSize]
+    ));
+
+    await dispatch(removeOrder(selectedOrder._id))
+
+    dispatch(getOrder())
+  }
+
+  const isAddedOrder = (product, dataOrders) => (
+    dataOrders.some(el => (
+      el.collectionName === product.collectionName &&
+      el.type === product.type &&
+      el.shoesName === product.shoesName &&
+      el.color === product.color &&
+      el.size === product.sizes[selectedSize]
+    ))
+  )
+
 
   if(product) return (
         <div className={classes.gridContainer}>
@@ -95,7 +143,7 @@ export default function Product({ location }) {
               <div className={classes.colorsText}>Available colors</div>
               <div className={classes.sameImgs}>
                 {sameProduct.map((el) => (
-                  <Link  
+                  <Link
                     key={el._id}
                     to={`${ROUTES[collection]}/${el.shoesName.replace(/\s/, '-')}--${el.color.replace(/\s/, '-')}`}
                     className={el.color === color ? classes.sameImgContainerFocus : classes.sameImgContainer}
@@ -105,29 +153,45 @@ export default function Product({ location }) {
                 ))}
               </div>
             </div>
-              {product.sizes.length > 0
-                ? (<div className={classes.sizeContainer}>
-                    <div className={classes.sizeText}>Size</div>
-                    <Select
-                      id='select'
-                      className={classes.sizeSelect}
-                      defaultValue={selectedSize}
-                      onChange={handleSelectSize}
-                    >
-                      {product.sizes.map((size, idx) => (
-                        <MenuItem key={size} value={idx}>{size}</MenuItem>
-                      ))}
-                    </Select>
-                  </div>
-                ) : null
-              }              
-            <Button
-              className={classes.button}
-              variant="contained"
-              color="primary"
-            >
-              ADD TO CARD
-            </Button>
+            {product.sizes.length > 0
+              ? (<div className={classes.sizeContainer}>
+                  <div className={classes.sizeText}>Size</div>
+                  <Select
+                    id='select'
+                    className={classes.sizeSelect}
+                    defaultValue={selectedSize}
+                    onChange={handleSelectSize}
+                  >
+                    {product.sizes.map((size, idx) => (
+                      <MenuItem key={size} value={idx}>{size}</MenuItem>
+                    ))}
+                  </Select>
+                </div>
+              ) : null
+            }
+            {isAddedOrder(product, dataOrders)
+              ? (
+                <Button
+                  className={classes.button}
+                  variant="contained"
+                  color="primary"
+                  onClick={handleRemoveOrder}
+                  disabled={orderLoading}
+                > 
+                  REMOVE ORDER
+                </Button>
+              ) : (
+                <Button
+                  className={classes.button}
+                  variant="contained"
+                  color="primary"
+                  onClick={handleCreateOrder}
+                  disabled={orderLoading}
+                > 
+                  ADD TO CARD
+                </Button>
+              )
+            }
           </div>
         </div>
   );
