@@ -19,6 +19,7 @@ app.use('/images',express.static('images'));
 app.use('/api/auth', require('./routes/auth.routes'))
 app.use('/api/shoes', require('./routes/shoes.routers'))
 app.use('/api/collections', require('./routes/collections.routes'))
+app.use('/api/orders', require('./routes/orders.routes'))
 
 const PORT = config.get('port') || 5000
 
