@@ -66,7 +66,15 @@ module.exports.login = async (req, res) => {
             { expiresIn: '1h' }
         )
 
-        res.json({ token: `Bearer ${token}`, name: `${user.firstName} ${user.lastName}` })
+        res.json({
+            token: `Bearer ${token}`,
+            user: {
+                _id: user._id,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email,
+            }
+        })
         
     } catch (error) {
         res.status(500).json({message: 'Error: ' + error})
@@ -75,7 +83,7 @@ module.exports.login = async (req, res) => {
 
 module.exports.isAuthorized = async (req, res) => {
     try {
-        res.json(true)
+        res.json({ user: req.user })
     } catch (error) {
         res.status(500).json({message: 'Error: ' + error})
     }
