@@ -1,49 +1,51 @@
 import { useState, useCallback, useEffect } from 'react';
-import axios from '../utils/axiosConfig';
+import { useDispatch } from 'react-redux';
+import initUser from '../store/actions/user';
 import { checkAuthorization } from '../API/authApi';
+import axios from '../utils/axiosConfig';
 
 const storageName = 'userData';
 
 export default () => {
+  const dispatch = useDispatch();
   const [token, setToken] = useState(null);
-  const [name, setName] = useState(null);
   const [isAuthorized, setIsAuthorized] = useState(false);
 
-  const login = useCallback((jwtToken, userName) => {
+  const login = useCallback((jwtToken) => {
     setToken(jwtToken);
-    setName(userName);
     setIsAuthorized(true);
     axios.setXApKey(jwtToken);
 
     localStorage.setItem(storageName, JSON.stringify({
-      token: jwtToken, name: userName,
+      token: jwtToken
     }));
   }, []);
 
   const logout = useCallback(() => {
     setToken(null);
-    setName(null);
     setIsAuthorized(false);
+    dispatch(initUser({}))
     localStorage.removeItem(storageName);
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem(storageName));
-    if (data && data.token && data.name) {
+    if (data && data.token) {
       axios.setXApKey(data.token);
       const checkingAuthorization = async () => {
         try {
-          await checkAuthorization(data.token);
-          login(data.token, data.name);
+          const response = await checkAuthorization(data.token);
+          login(data.token);
+          dispatch(initUser(response.data.user))
         } catch (error) {
           logout();
         }
       };
       checkingAuthorization();
     } else logout();
-  }, [login, logout]);
+  }, [login, logout, dispatch]);
 
   return {
-    login, logout, token, name, isAuthorized, setIsAuthorized,
+    login, logout, token, isAuthorized, setIsAuthorized,
   };
 };
