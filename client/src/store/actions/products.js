@@ -1,6 +1,6 @@
 import { GET_PRODUCTS, GET_PRODUCTS_SUCCESS, GET_PRODUCTS_FAILURE } from './constants';
 import {
-  getAllRequest, getMenRequest, getWomenRequest, getOutletRequest,
+  getAllRequest, getMenRequest, getWomenRequest, getOutletRequest, getClothingRequest, getAccesoriesRequest,
 } from '../../API/productApi';
 import ROUTES from '../../globals/routes';
 
@@ -33,6 +33,14 @@ export default (route) => async (dispatch) => {
       }
       case ROUTES.outlet: {
         response = await getOutletRequest();
+        break;
+      }
+      case ROUTES.clothing: {
+        response = await getClothingRequest();
+        break;
+      }
+      case ROUTES.accesories: {
+        response = await getAccesoriesRequest();
         break;
       }
       default: {

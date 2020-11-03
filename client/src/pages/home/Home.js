@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Slider from './slider/Slider';
-import Collections from './collections/Collections';
+// import Collections from './collections/Collections';
 import ROUTES from '../../globals/routes';
 import useStyles from './home.style';
 
@@ -22,7 +22,7 @@ export default function Home() {
     <div className={classes.root}>
       <Slider />
 
-      <Collections
+      {/* <Collections
         title="Flat Rate"
         text="Our best sellers at 45€"
         route={ROUTES.flatRate46}
@@ -39,7 +39,7 @@ export default function Home() {
         text="Outlet > Our greatest hits at the best price"
         route={ROUTES.outlet}
         viewItems={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]}
-      />
+      /> */}
 
       <div className={classes.collectionManWoman}>
         <div className={classes.linkContainer}>
@@ -71,7 +71,7 @@ export default function Home() {
           <div className={classes.accessText}>
             Accessories
             <div>
-              <Link to={ROUTES.startup} className={classes.link}>
+              <Link to={ROUTES.accesories} className={classes.link}>
                 View all
               </Link>
             </div>
@@ -82,7 +82,7 @@ export default function Home() {
           <div className={classes.accessText}>
             Clothing
             <div>
-              <Link to={ROUTES.womenTextile} className={classes.link}>
+              <Link to={ROUTES.clothing} className={classes.link}>
                 View all
               </Link>
             </div>

@@ -4,11 +4,9 @@ export default {
   men: '/collections/men',
   women: '/collections/women',
   outlet: '/collections/outlet',
-  flatRate46: '/collections/flat-rate-46',
-  summerSpecialSelection: '/collections/summer-special-selection',
-  womenTextile: '/collections/women-textile/',
-  startup: 'collections/startup/',
+  clothing: '/collections/clothing',
   collections: '/collections',
+  accesories: '/collections/accesories',
 
   shipment: '/pages/shipment',
   exchanges: '/pages/exchanges',

@@ -7,6 +7,9 @@ import Men from './pages/collections/men/Men';
 import Women from './pages/collections/women/Women';
 import Outlet from './pages/collections/outlet/Outlet';
 import Product from './pages/collections/product/Product';
+import Clothing from './pages/collections/clothing/Clothing';
+import Accesories from './pages/collections/accesories/Accesories';
+
 import Shipment from './pages/shipment/Shipment';
 import Exchanges from './pages/exchanges/Exchanges';
 import Returns from './pages/returns/Returns';
@@ -28,10 +31,14 @@ export default () => (
     <Route exact path={ROUTES.men} component={Men} />
     <Route exact path={ROUTES.women} component={Women} />
     <Route exact path={ROUTES.outlet} component={Outlet} />
+    <Route exact path={ROUTES.clothing} component={Clothing} />
+    <Route exact path={ROUTES.accesories} component={Accesories} />
 
     <Route path={`${ROUTES.men}/:product`} component={Product} />
     <Route path={`${ROUTES.women}/:product`} component={Product} />
     <Route path={`${ROUTES.outlet}/:product`} component={Product} />
+    <Route path={`${ROUTES.clothing}/:product`} component={Product} />
+    <Route path={`${ROUTES.accesories}/:product`} component={Product} />
 
     <Route path={ROUTES.shipment} component={Shipment} />
     <Route path={ROUTES.exchanges} component={Exchanges} />

@@ -36,21 +36,9 @@ module.exports.outlet = async (req, res) => {
     }
 }
 
-module.exports.flatRate46 = async (req, res) => {
-    try {
-        const shoes = await Shoes.find({ 'collectionName': 'flatRate46' })        
-        if(!shoes) {
-            return res.status(400).json({ message: 'Product is not existed'})
-        }
-        res.json(shoes)
-    } catch (error) {
-        res.status(500).json({message: 'Error: ' + error})
-    }
-}
-
 module.exports.accesories = async (req, res) => {
     try {
-        const shoes = await Shoes.find({ 'collectionName': 'accesories' })        
+        const shoes = await Shoes.find({ 'type': 'accessories' })        
         if(!shoes) {
             return res.status(400).json({ message: 'Product is not existed'})
         }
@@ -60,21 +48,9 @@ module.exports.accesories = async (req, res) => {
     }
 }
 
-module.exports.womenTextile = async (req, res) => {
+module.exports.clothing = async (req, res) => {
     try {
-        const shoes = await Shoes.find({ 'collectionName': 'womenTextile' })        
-        if(!shoes) {
-            return res.status(400).json({ message: 'Product is not existed'})
-        }
-        res.json(shoes)
-    } catch (error) {
-        res.status(500).json({message: 'Error: ' + error})
-    }
-}
-
-module.exports.summerSpecialSelection = async (req, res) => {
-    try {
-        const shoes = await Shoes.find({ 'collectionName': 'summerSpecialSelection' })        
+        const shoes = await Shoes.find({ 'type': 'Textil' })        
         if(!shoes) {
             return res.status(400).json({ message: 'Product is not existed'})
         }

@@ -15,3 +15,11 @@ export const getWomenRequest = () => (
 export const getOutletRequest = () => (
   axios.get('/collections/outlet')
 );
+
+export const getAccesoriesRequest = () => (
+  axios.get('/collections/accesories')
+);
+
+export const getClothingRequest = () => (
+  axios.get('/collections/clothing')
+);
