@@ -20,8 +20,6 @@ module.exports.add = async (req, res) => {
 module.exports.all = async (req, res) =>  {
     try {
         const shoes = await Shoes.find()
-        console.log(shoes)
-
         if(!shoes) {
             return res.status(400).json({ message: 'Product is not existed'})
         }
