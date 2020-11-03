@@ -27,6 +27,22 @@ export default makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     width: 150,
-    fontSize: 30
+    fontSize: 30,
+    marginTop: 5,
+  },
+  link: {
+    textDecoration: 'none',
+    color: "#000",
+    textAlign: "center",
+  },
+  ordersCounts: {
+    fontSize: 16,
+    position: 'relative',
+    top: -23,
+  },
+  name: {
+    fontSize: 16,
+    marginTop: -10,
+    marginBottom: 5,
   }
 }));
