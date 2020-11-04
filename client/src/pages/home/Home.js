@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Slider from './slider/Slider';
 // import Collections from './collections/Collections';
 import ROUTES from '../../globals/routes';
+import handleScrollToTop from '../../globals/scrollToTop';
 import useStyles from './home.style';
 
 import img1 from '../../assets/images/1.jpg';
@@ -43,10 +44,10 @@ export default function Home() {
 
       <div className={classes.collectionManWoman}>
         <div className={classes.linkContainer}>
-          <Link to={ROUTES.men} className={classes.link}>
+          <Link to={ROUTES.men} className={classes.link} onClick={handleScrollToTop}>
             Men
           </Link>
-          <Link to={ROUTES.women} className={classes.link}>
+          <Link to={ROUTES.women} className={classes.link} onClick={handleScrollToTop}>
             Women
           </Link>
         </div>
@@ -71,7 +72,7 @@ export default function Home() {
           <div className={classes.accessText}>
             Accessories
             <div>
-              <Link to={ROUTES.accesories} className={classes.link}>
+              <Link to={ROUTES.accesories} className={classes.link} onClick={handleScrollToTop}>
                 View all
               </Link>
             </div>
@@ -82,7 +83,7 @@ export default function Home() {
           <div className={classes.accessText}>
             Clothing
             <div>
-              <Link to={ROUTES.clothing} className={classes.link}>
+              <Link to={ROUTES.clothing} className={classes.link} onClick={handleScrollToTop}>
                 View all
               </Link>
             </div>
@@ -90,7 +91,7 @@ export default function Home() {
         </div>
       </div>
 
-      <Link to="pages/galeria" className={classes.imgContainer}>
+      <Link to="pages/galeria" className={classes.imgContainer} onClick={handleScrollToTop}>
         <div className={classes.imgWrap1}>
           <img className={classes.img} src={img1} alt="" />
         </div>

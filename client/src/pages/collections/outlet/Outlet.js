@@ -5,6 +5,7 @@ import getProducts from '../../../store/actions/products';
 import { baseUrl } from '../../../utils/parameters';
 import ROUTES from '../../../globals/routes';
 import headerImg from '../../../assets/images/AlphaCarbono_colores.webp';
+import handleScrollToTop from '../../../globals/scrollToTop';
 import classes from './style.module.css';
 
 export default function Outlet() {
@@ -47,6 +48,7 @@ export default function Outlet() {
                 key={product._id}
                 to={`${ROUTES.outlet}/${product.shoesName.replace(/\s/, '-')}--${product.color.replace(/\s/, '-')}`}
                 className={classes.card}
+                onClick={handleScrollToTop}
               >
                 <div className={classes.imgContainer}>
                   <img src={`${baseUrl}${product.imagesSrc[0]}`} alt="img" className={classes.img} />

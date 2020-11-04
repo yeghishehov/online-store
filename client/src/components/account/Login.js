@@ -7,6 +7,7 @@ import initUser from '../../store/actions/user';
 import { useAuthContext } from '../../contexts/authContext';
 import { loginRequest } from '../../API/authApi';
 import ROUTES from '../../globals/routes';
+import handleScrollToTop from '../../globals/scrollToTop'
 import useStyles from './style';
 
 function Login() {
@@ -72,9 +73,9 @@ function Login() {
         </div>
       </div>
       <div className={classes.buttons}>
-        <Link to="#" className={classes.link}> Forgot your password? </Link>
+        <Link to="#" className={classes.link} onClick={handleScrollToTop}> Forgot your password? </Link>
         <Button onClick={loginHandler} className={classes.signIn}> SIGN IN </Button>
-        <Link to={ROUTES.register} className={classes.link}> Create account </Link>
+        <Link to={ROUTES.register} className={classes.link} onClick={handleScrollToTop}> Create account </Link>
       </div>
     </div>
   );

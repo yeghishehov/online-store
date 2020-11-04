@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Select, MenuItem, Button } from '@material-ui/core';
 import ReactImageMagnify from 'react-image-magnify';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import getProducts from '../../../store/actions/products';
@@ -9,14 +9,17 @@ import {  getOrder, createOrder, removeOrder } from '../../../store/actions/orde
 import ROUTES from '../../../globals/routes';
 import { baseUrl } from '../../../utils/parameters';
 import error404 from '../../../assets/images/HTML-Error-Page.png';
+import handleScrollToTop from '../../../globals/scrollToTop';
 import classes from './style.module.css';
 
 export default function Product({ location }) {
   const dispatch = useDispatch();
   const { data, loading, error } = useSelector((state) => state.products);
   const { data: dataOrders, loading: orderLoading } = useSelector((state) => state.orders);
+  const { data: user } = useSelector((state) => state.user)
   const [selectedImg, setSelectedImg] = useState(0);
   const [selectedSize, setSelectedSize] = useState(0);
+  const [isRedirect, setIsRedirect] = useState(false);
 
   const path = location.pathname.split('/');
   const collection = path[2];
@@ -86,6 +89,10 @@ export default function Product({ location }) {
     dispatch(getOrder())
   }
 
+  const handleRedirect = () => {
+    setIsRedirect(true);
+  }
+
   const isAddedOrder = (product, dataOrders) => (
     dataOrders.some(el => (
       el.collectionName === product.collectionName &&
@@ -96,6 +103,7 @@ export default function Product({ location }) {
     ))
   )
 
+  if (isRedirect) return <Redirect to={ROUTES.login} />
 
   if(product) return (
         <div className={classes.gridContainer}>
@@ -147,6 +155,7 @@ export default function Product({ location }) {
                     key={el._id}
                     to={`${ROUTES[collection]}/${el.shoesName.replace(/\s/, '-')}--${el.color.replace(/\s/, '-')}`}
                     className={el.color === color ? classes.sameImgContainerFocus : classes.sameImgContainer}
+                    onClick={handleScrollToTop}
                   >
                     <img src={`${baseUrl}${el.imagesSrc[0]}`} alt="" className={classes.sameImg}/>
                   </Link>
@@ -180,16 +189,27 @@ export default function Product({ location }) {
                 > 
                   REMOVE ORDER
                 </Button>
-              ) : (
-                <Button
-                  className={classes.button}
-                  variant="contained"
-                  color="primary"
-                  onClick={handleCreateOrder}
-                  disabled={orderLoading}
-                > 
-                  ADD TO CARD
-                </Button>
+              ) : (user.email
+                    ? (
+                      <Button
+                        className={classes.button}
+                        variant="contained"
+                        color="primary"
+                        onClick={handleCreateOrder}
+                        disabled={orderLoading}
+                      > 
+                        ADD TO CARD
+                      </Button>
+                    ) : (
+                      <Button
+                        className={classes.button}
+                        variant="contained"
+                        color="primary"
+                        onClick={handleRedirect}
+                      > 
+                        ADD TO CARD
+                      </Button>
+                    )
               )
             }
           </div>
