@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import initUser from '../store/actions/user';
+import { getOrder, clearOrders } from '../store/actions/orders';
 import { checkAuthorization } from '../API/authApi';
 import axios from '../utils/axiosConfig';
 
@@ -15,16 +16,18 @@ export default () => {
     setToken(jwtToken);
     setIsAuthorized(true);
     axios.setXApKey(jwtToken);
+    dispatch(getOrder());
 
     localStorage.setItem(storageName, JSON.stringify({
       token: jwtToken
     }));
-  }, []);
+  }, [dispatch]);
 
   const logout = useCallback(() => {
     setToken(null);
     setIsAuthorized(false);
     dispatch(initUser({}))
+    dispatch(clearOrders());
     localStorage.removeItem(storageName);
   }, [dispatch]);
 
