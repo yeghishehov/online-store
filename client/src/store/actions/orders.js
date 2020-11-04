@@ -11,6 +11,8 @@ import {
   REMOVE_ORDER,
   REMOVE_ORDER_SUCCESS,
   REMOVE_ORDER_FAILURE,
+
+  CLEAR_ORDERS,
 } from './constants';
 
 const getOrdersLoading = () => ({
@@ -49,7 +51,11 @@ const removeOrderFailure = (error) => ({
   error,
 });
 
-export const getOrder = (user) => async (dispatch) => {
+const clearOrdersSuccess = () => ({
+  type: CLEAR_ORDERS,
+});
+
+export const getOrder = () => async (dispatch) => {
   dispatch(getOrdersLoading());
   try {
     const response = await getAllOrdersRequest();
@@ -77,4 +83,8 @@ export const removeOrder = (orderId) => async (dispatch) => {
   } catch (error) {
     dispatch(removeOrderFailure(`${error}`));
   }
+}
+
+export const clearOrders = () => async (dispatch) => {
+  dispatch(clearOrdersSuccess());
 }

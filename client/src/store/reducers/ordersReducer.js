@@ -10,6 +10,8 @@ import {
   REMOVE_ORDER,
   REMOVE_ORDER_SUCCESS,
   REMOVE_ORDER_FAILURE,
+
+  CLEAR_ORDERS,
 } from '../actions/constants';
 
 const initialState = {
@@ -83,6 +85,13 @@ export default (state = initialState, action) => {
         successMessage: '',
         error: action.error,
       };
+
+    // ---- CLEARING ----
+    case CLEAR_ORDERS:
+      return {
+        ...state,
+        data: [],
+      }
 
     // ---- DEFAULT ----
     default: return state;
