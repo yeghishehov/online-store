@@ -2,7 +2,7 @@ const Orders = require('../models/orders')
 
 module.exports.getOrders = async (req, res) => {
     try {
-        const orders = await Orders.find()        
+        const orders = await Orders.find({ 'userId': req.user._id }).select('-userId')
         if(!orders) {
             return res.status(400).json({ message: 'Orders not found'})
         }
@@ -19,12 +19,12 @@ module.exports.create = async (req, res) => {
             res.status(400).json('Order not received')
         }
 
-        const findedOrder = await Orders.findOne({ ...order })
+        const findedOrder = await Orders.findOne({ ...order, 'userId': req.user._id })
         if (findedOrder) {
             return res.status(400).json({ message: 'Your order is already added' })
         }
 
-        const newOrder = new Orders({ ...order })
+        const newOrder = new Orders({ ...order, 'userId': req.user._id })
         await newOrder.save();
 
         res.status(201).json({ message: 'Order is created'})
