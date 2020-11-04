@@ -91,6 +91,7 @@ export default function Product({ location }) {
 
   const handleRedirect = () => {
     setIsRedirect(true);
+    handleScrollToTop();
   }
 
   const isAddedOrder = (product, dataOrders) => (
