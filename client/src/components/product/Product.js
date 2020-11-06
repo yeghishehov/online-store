@@ -4,12 +4,12 @@ import ReactImageMagnify from 'react-image-magnify';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import getProducts from '../../../store/actions/products';
-import {  getOrder, createOrder, removeOrder } from '../../../store/actions/orders';
-import ROUTES from '../../../globals/routes';
-import { baseUrl } from '../../../utils/parameters';
-import error404 from '../../../assets/images/HTML-Error-Page.png';
-import handleScrollToTop from '../../../globals/scrollToTop';
+import getProducts from '../../store/actions/products';
+import {  getOrder, createOrder, removeOrder } from '../../store/actions/orders';
+import ROUTES from '../../globals/routes';
+import { baseUrl } from '../../utils/parameters';
+import error404 from '../../assets/images/HTML-Error-Page.png';
+import handleScrollToTop from '../../globals/scrollToTop';
 import classes from './style.module.css';
 
 export default function Product({ location }) {

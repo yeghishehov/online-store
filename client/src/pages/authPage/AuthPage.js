@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Fab, Button, TextField } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-import { useAuthContext } from '../contexts/authContext';
-import ROUTES from '../globals/routes';
-import axios from '../utils/axiosConfig';
+import { useAuthContext } from '../../contexts/authContext';
+import ROUTES from '../../globals/routes';
+import axios from '../../utils/axiosConfig';
 import useStyles from './style';
 
 export default function AuthPage() {

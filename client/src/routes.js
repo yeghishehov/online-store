@@ -3,27 +3,30 @@ import { Switch, Route } from 'react-router-dom';
 import ROUTES from './globals/routes';
 
 import Home from './pages/home/Home';
+import AuthPage from './pages/authPage/AuthPage';
+import Product from './components/product/Product';
+
 import Men from './pages/collections/men/Men';
 import Women from './pages/collections/women/Women';
 import Outlet from './pages/collections/outlet/Outlet';
-import Product from './pages/collections/product/Product';
 import Clothing from './pages/collections/clothing/Clothing';
 import Accesories from './pages/collections/accesories/Accesories';
 
-import Shipment from './pages/shipment/Shipment';
-import Exchanges from './pages/exchanges/Exchanges';
-import Returns from './pages/returns/Returns';
-import SizeChart from './pages/sizeChart/SizeChart';
-import Faq from './pages/faq/Faq';
-import About from './pages/about/About';
-import Contact from './pages/contact/Contact';
-import DressYourProject from './pages/dressYourProject/DressYourProject';
-import Design from './pages/design/Design';
-import OfficialStores from './pages/officialStores/OfficialStores';
-import Legal from './pages/legal/Legal';
+
+import Shipment from './pages/otherPages/shipment/Shipment';
+import Exchanges from './pages/otherPages/exchanges/Exchanges';
+import Returns from './pages/otherPages/returns/Returns';
+import SizeChart from './pages/otherPages/sizeChart/SizeChart';
+import Faq from './pages/otherPages/faq/Faq';
+import About from './pages/otherPages/about/About';
+import Contact from './pages/otherPages/contact/Contact';
+import DressYourProject from './pages/otherPages/dressYourProject/DressYourProject';
+import Design from './pages/otherPages/design/Design';
+import OfficialStores from './pages/otherPages/officialStores/OfficialStores';
+import Legal from './pages/otherPages/legal/Legal';
+
 import Login from './components/account/Login';
 import Register from './components/account/Register';
-import AuthPage from './pages/AuthPage';
 
 export default () => (
   <Switch>
