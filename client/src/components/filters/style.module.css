@@ -1,0 +1,68 @@
+.filters {
+ display: flex;
+ border-bottom: 1px lightgray solid;
+ padding-bottom: 20px;
+ margin-bottom: 20px;
+}
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gray;
+    border: none;
+    outline: none;
+    background-color: white;
+    font-size: 1rem;
+}
+.clickedButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    border: none;
+    outline: none;
+    background-color: white;
+    font-size: 1rem;
+}
+.info {
+    display: flex;
+}
+.valueButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gray;
+    border: 1px solid lightgray;
+    outline: none;
+    background-color: white;
+    font-size: 1rem;
+    margin: 0 3px;
+    padding: 7px;
+    font-size: 16px;
+}
+.clickedValueButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    border: 1px solid black;
+    outline: none;
+    background-color: white;
+    font-size: 1rem;
+    margin: 0 3px;
+    padding: 7px;
+    font-size: 16px;
+}
+.hidden {
+    display: none;
+}
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+.chip {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
