@@ -32,7 +32,7 @@ export default function Header() {
             {user.firstName}
           </div>
         </Link>
-        <Link to="#" className={classes.link} onClick={handleScrollToTop}>
+        <Link to={ROUTES.orders} className={classes.link} onClick={handleScrollToTop}>
           <ShoppingCartIcon fontSize="inherit" />
           {data.length > 0
             ? <span className={classes.ordersCounts}>{data.length}</span>
