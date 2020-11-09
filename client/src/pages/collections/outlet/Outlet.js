@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import getProducts from '../../../store/actions/products';
@@ -6,11 +6,13 @@ import { baseUrl } from '../../../utils/parameters';
 import ROUTES from '../../../globals/routes';
 import headerImg from '../../../assets/images/AlphaCarbono_colores.webp';
 import handleScrollToTop from '../../../globals/scrollToTop';
+import Filters from '../../../components/filters/Filters';
 import classes from './style.module.css';
 
 export default function Outlet() {
   const dispatch = useDispatch();
   const { data, loading, error } = useSelector((state) => state.products);
+  const [filtersInfo, setFiltersInfo] = useState({})
 
   useEffect(() => {
     dispatch(getProducts(ROUTES.outlet));
@@ -24,10 +26,25 @@ export default function Outlet() {
     return <div>{error}</div>;
   }
 
-  const types = data.map((el) => el.type);
+  const {Size, Price, Colors, Collection} =  filtersInfo;
+
+  const dataBySize = Size && Size.length > 0
+    ? data.filter(el => el.sizes.some(size => filtersInfo.Size.includes(size)))
+    : data
+  const dataByColors = Colors && Colors.length > 0
+    ? dataBySize.filter(el => Colors.includes(el.color.split(" ").splice(-1).join()))
+    : dataBySize
+  const dataByPrice = Price && Price.length > 0
+    ? dataByColors.filter(el => Price.some(price => +el.price < +price.split(' ')[2]  ) )
+    : dataByColors
+  const dataByCollection = Collection && Collection.length > 0
+    ? dataByPrice.filter(el => Collection.includes(el.shoesName))
+    : dataByPrice
+
+  const types = dataByCollection.map((el) => el.type);
   const uniqueTypes = [...new Set(types)];
   const dataByTypes = uniqueTypes.reduce((acc, type) => {
-    const filteredData = data.filter((el) => el.type === type);
+    const filteredData = dataByCollection.filter((el) => el.type === type);
     return [...acc, { type, data: filteredData }];
   }, []);
 
@@ -37,7 +54,9 @@ export default function Outlet() {
         <img src={headerImg} alt="" className={classes.headerImg} />
       </div>
       <div className={classes.headerTitle}>Outlet</div>
-      <div className={classes.filters}>FILTERS COMPONENT</div>
+      <div className={classes.filters}>
+        <Filters setFiltersInfo={setFiltersInfo} />
+      </div>
 
       {dataByTypes.map((dataEl) => (
         <div key={dataEl.type}>

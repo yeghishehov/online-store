@@ -29,7 +29,7 @@
 .filters {
     width: 70vw;
     margin: auto;
-    border-bottom: 1px black solid;
+    /* border-bottom: 1px black solid; */
     margin-top: 40px;
     padding-bottom: 20px;
 }
