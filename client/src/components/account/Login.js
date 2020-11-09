@@ -27,11 +27,8 @@ function Login() {
       login(response.data.token);
       dispatch(initUser(response.data.user));
     } catch (error) {
-      console.log(error)
       const data = error.response && error.response.data;
-      console.log(data)
       const isErrorsExisted = data && 'errors' in data;
-      console.log(isErrorsExisted)
 
       if (isErrorsExisted) {
         const email = data.errors.find((err) => err.param === 'email');
@@ -42,7 +39,9 @@ function Login() {
 
         enqueueSnackbar(data.message, { variant: 'warning' });
       } else {
-        enqueueSnackbar(data && data.message ? data.message : error, { variant: 'warning' });
+        data
+          ? enqueueSnackbar(data.message, { variant: 'warning' })
+          : enqueueSnackbar(`${error}`, { variant: 'error' })
       }
     }
   };

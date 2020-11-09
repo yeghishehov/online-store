@@ -47,7 +47,9 @@ function Register() {
 
         enqueueSnackbar(data.message, { variant: 'warning' });
       } else {
-        enqueueSnackbar(data.message, { variant: 'warning' });
+        data
+          ? enqueueSnackbar(data.message, { variant: 'warning' })
+          : enqueueSnackbar(`${error}`, { variant: 'error' })
       }
     }
   };
