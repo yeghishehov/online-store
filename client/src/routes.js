@@ -27,6 +27,7 @@ import Legal from './pages/otherPages/legal/Legal';
 
 import Login from './components/account/Login';
 import Register from './components/account/Register';
+import Orders from './components/orders/Orders';
 
 export default () => (
   <Switch>
@@ -59,5 +60,6 @@ export default () => (
     <Route path={ROUTES.login} component={Login} />
     <Route path={ROUTES.register} component={Register} />
     <Route path={ROUTES.authPage} component={AuthPage} />
+    <Route path={ROUTES.orders} component={Orders} />
   </Switch>
 );
