@@ -24,4 +24,5 @@ export default {
   login: '/account/login',
   register: '/account/register',
   authPage: '/account/my-page',
+  orders: '/orders',
 };
