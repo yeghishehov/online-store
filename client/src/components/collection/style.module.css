@@ -25,6 +25,7 @@
     font-style: normal;
     word-wrap: break-word;
     color: #808080;
+    text-transform: capitalize
 }
 .filters {
     width: 70vw;

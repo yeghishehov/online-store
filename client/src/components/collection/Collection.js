@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import getProducts from '../../../store/actions/products';
-import { baseUrl } from '../../../utils/parameters';
-import ROUTES from '../../../globals/routes';
-import headerImg from '../../../assets/images/AlphaCarbono_colores.webp';
-import handleScrollToTop from '../../../globals/scrollToTop';
-import Filters from '../../../components/filters/Filters';
+import getProducts from '../../store/actions/products';
+import { baseUrl } from '../../utils/parameters';
+import ROUTES from '../../globals/routes';
+import handleScrollToTop from '../../globals/scrollToTop';
+import headerImg from '../../assets/images/ezgif.com-webp-to-png.webp';
+import Filters from '../../components/filters/Filters';
 import classes from './style.module.css';
 
-export default function Outlet() {
+export default function Collection({ collectionName }) {
   const dispatch = useDispatch();
   const { data, loading, error } = useSelector((state) => state.products);
   const [filtersInfo, setFiltersInfo] = useState({})
-
+  
   useEffect(() => {
-    dispatch(getProducts(ROUTES.outlet));
-  }, [dispatch]);
+    dispatch(getProducts(ROUTES.collections[collectionName]));
+  }, [dispatch, collectionName]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -53,7 +54,7 @@ export default function Outlet() {
       <div className={classes.headerImgContainer}>
         <img src={headerImg} alt="" className={classes.headerImg} />
       </div>
-      <div className={classes.headerTitle}>Outlet</div>
+      <div className={classes.headerTitle}>{collectionName}</div>
       <div className={classes.filters}>
         <Filters setFiltersInfo={setFiltersInfo} />
       </div>
@@ -65,7 +66,7 @@ export default function Outlet() {
             {dataEl.data.map((product) => (
               <Link
                 key={product._id}
-                to={`${ROUTES.outlet}/${product.shoesName.replace(/\s/, '-')}--${product.color.replace(/\s/, '-')}`}
+                to={`${ROUTES.collections[collectionName]}/${product.shoesName.replace(/\s/, '-')}/${product.color.replace(/\s/, '-')}`}
                 className={classes.card}
                 onClick={handleScrollToTop}
               >
@@ -83,3 +84,7 @@ export default function Outlet() {
     </div>
   );
 }
+
+Collection.propTypes = {
+  collectionName: PropTypes.string.isRequired,
+};
