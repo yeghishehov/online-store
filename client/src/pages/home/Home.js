@@ -44,10 +44,10 @@ export default function Home() {
 
       <div className={classes.collectionManWoman}>
         <div className={classes.linkContainer}>
-          <Link to={ROUTES.men} className={classes.link} onClick={handleScrollToTop}>
+          <Link to={ROUTES.collections.men} className={classes.link} onClick={handleScrollToTop}>
             Men
           </Link>
-          <Link to={ROUTES.women} className={classes.link} onClick={handleScrollToTop}>
+          <Link to={ROUTES.collections.women} className={classes.link} onClick={handleScrollToTop}>
             Women
           </Link>
         </div>
@@ -72,7 +72,7 @@ export default function Home() {
           <div className={classes.accessText}>
             Accessories
             <div>
-              <Link to={ROUTES.accesories} className={classes.link} onClick={handleScrollToTop}>
+              <Link to={ROUTES.collections.accesories} className={classes.link} onClick={handleScrollToTop}>
                 View all
               </Link>
             </div>
@@ -83,7 +83,7 @@ export default function Home() {
           <div className={classes.accessText}>
             Clothing
             <div>
-              <Link to={ROUTES.clothing} className={classes.link} onClick={handleScrollToTop}>
+              <Link to={ROUTES.collections.clothing} className={classes.link} onClick={handleScrollToTop}>
                 View all
               </Link>
             </div>

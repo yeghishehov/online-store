@@ -4,14 +4,8 @@ import ROUTES from './globals/routes';
 
 import Home from './pages/home/Home';
 import AuthPage from './pages/authPage/AuthPage';
+import Collection from './components/collection/Collection';
 import Product from './components/product/Product';
-
-import Men from './pages/collections/men/Men';
-import Women from './pages/collections/women/Women';
-import Outlet from './pages/collections/outlet/Outlet';
-import Clothing from './pages/collections/clothing/Clothing';
-import Accesories from './pages/collections/accesories/Accesories';
-
 
 import Shipment from './pages/otherPages/shipment/Shipment';
 import Exchanges from './pages/otherPages/exchanges/Exchanges';
@@ -29,20 +23,32 @@ import Login from './components/account/Login';
 import Register from './components/account/Register';
 import Orders from './components/orders/Orders';
 
+const collections = Object.entries(ROUTES.collections)
+  .map(el => ({name: el[0], path: el[1]}))
+
 export default () => (
   <Switch>
     <Route exact path={ROUTES.home} component={Home} />
-    <Route exact path={ROUTES.men} component={Men} />
-    <Route exact path={ROUTES.women} component={Women} />
-    <Route exact path={ROUTES.outlet} component={Outlet} />
-    <Route exact path={ROUTES.clothing} component={Clothing} />
-    <Route exact path={ROUTES.accesories} component={Accesories} />
 
-    <Route path={`${ROUTES.men}/:product`} component={Product} />
-    <Route path={`${ROUTES.women}/:product`} component={Product} />
-    <Route path={`${ROUTES.outlet}/:product`} component={Product} />
-    <Route path={`${ROUTES.clothing}/:product`} component={Product} />
-    <Route path={`${ROUTES.accesories}/:product`} component={Product} />
+    {collections.map(collection => (
+      <Route exact path={collection.path} key={collection.name} >
+        <Collection collectionName={collection.name} />
+      </Route>
+    ))}
+
+    {collections.map(collection => (
+      <Route
+        path={`${collection.path}/:product`}
+        component={Product}
+        key={collection.name}
+      />
+    ))}
+    
+    <Route path={`${ROUTES.collections.men}/:product`} component={Product} />
+    <Route path={`${ROUTES.collections.women}/:product`} component={Product} />
+    <Route path={`${ROUTES.collections.outlet}/:product`} component={Product} />
+    <Route path={`${ROUTES.collections.clothing}/:product`} component={Product} />
+    <Route path={`${ROUTES.collections.accesories}/:product`} component={Product} />
 
     <Route path={ROUTES.shipment} component={Shipment} />
     <Route path={ROUTES.exchanges} component={Exchanges} />

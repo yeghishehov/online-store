@@ -1,12 +1,13 @@
 export default {
   home: '/',
 
-  men: '/collections/men',
-  women: '/collections/women',
-  outlet: '/collections/outlet',
-  clothing: '/collections/clothing',
-  collections: '/collections',
-  accesories: '/collections/accesories',
+  collections: {
+    men: '/collections/men',
+    women: '/collections/women',
+    outlet: '/collections/outlet',
+    clothing: '/collections/clothing',
+    accesories: '/collections/accesories',
+  },  
 
   shipment: '/pages/shipment',
   exchanges: '/pages/exchanges',

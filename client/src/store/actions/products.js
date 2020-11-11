@@ -23,23 +23,23 @@ export default (route) => async (dispatch) => {
   try {
     let response;
     switch (route) {
-      case ROUTES.men: {
+      case ROUTES.collections.men: {
         response = await getMenRequest();
         break;
       }
-      case ROUTES.women: {
+      case ROUTES.collections.women: {
         response = await getWomenRequest();
         break;
       }
-      case ROUTES.outlet: {
+      case ROUTES.collections.outlet: {
         response = await getOutletRequest();
         break;
       }
-      case ROUTES.clothing: {
+      case ROUTES.collections.clothing: {
         response = await getClothingRequest();
         break;
       }
-      case ROUTES.accesories: {
+      case ROUTES.collections.accesories: {
         response = await getAccesoriesRequest();
         break;
       }
