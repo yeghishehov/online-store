@@ -23,11 +23,11 @@ export default function Product({ location }) {
 
   const path = location.pathname.split('/');
   const collection = path[2];
-  const shoesName = path[3].split('--')[0].replace(/-/, ' ');
-  const color = path[3].split('--')[1].replace(/-/, ' ');
+  const shoesName = path[3].replace(/-/, ' ');
+  const color = path[4].replace(/-/, ' ');
 
   useEffect(() => {
-    dispatch(getProducts(ROUTES[collection]));
+    dispatch(getProducts(ROUTES.collections[collection]));
   }, [dispatch, collection]);
 
   if (loading) {
@@ -154,7 +154,7 @@ export default function Product({ location }) {
                 {sameProduct.map((el) => (
                   <Link
                     key={el._id}
-                    to={`${ROUTES[collection]}/${el.shoesName.replace(/\s/, '-')}--${el.color.replace(/\s/, '-')}`}
+                    to={`${ROUTES.collections[collection]}/${el.shoesName.replace(/\s/, '-')}/${el.color.replace(/\s/, '-')}`}
                     className={el.color === color ? classes.sameImgContainerFocus : classes.sameImgContainer}
                     onClick={handleScrollToTop}
                   >
@@ -169,7 +169,7 @@ export default function Product({ location }) {
                   <Select
                     id='select'
                     className={classes.sizeSelect}
-                    defaultValue={selectedSize}
+                    value={selectedSize}
                     onChange={handleSelectSize}
                   >
                     {product.sizes.map((size, idx) => (
