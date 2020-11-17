@@ -13,7 +13,7 @@ import ROUTES from '../../globals/routes';
 export default function Header() {
   const classes = useStyles();
   const { data } = useSelector((state) => state.orders);
-  const { data: user } = useSelector((state) => state.user);
+  // const { data: user } = useSelector((state) => state.user);
   return (
     <div className={classes.root}>
       <div className={classes.nav}>
@@ -28,9 +28,9 @@ export default function Header() {
         <SearchIcon fontSize="inherit" />
         <Link to={ROUTES.authPage} className={classes.link} onClick={handleScrollToTop}>
           <PermIdentityIcon fontSize="inherit" />
-          <div className={classes.name}>
+          {/* <div className={classes.name}>
             {user.firstName}
-          </div>
+          </div> */}
         </Link>
         <Link to={ROUTES.orders} className={classes.link} onClick={handleScrollToTop}>
           <ShoppingCartIcon fontSize="inherit" />

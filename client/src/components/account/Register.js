@@ -19,37 +19,39 @@ function Register() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const registerHandler = async () => {
-    try {
-      const response = await registrationRequest(form);
+  const registerHandler = async (key) => {
+    if(!key.keyCode || key.keyCode === 13) {
+      try {
+        const response = await registrationRequest(form);
 
-      setForm({
-        email: '', password: '', firstName: '', lastName: '',
-      });
+        setForm({
+          email: '', password: '', firstName: '', lastName: '',
+        });
 
-      enqueueSnackbar(response.data.message, { variant: 'success' });
-      setIsRegistered(true);
-    } catch (error) {
-      const { data } = error.response;
+        enqueueSnackbar(response.data.message, { variant: 'success' });
+        setIsRegistered(true);
+      } catch (error) {
+        const { data } = error.response;
 
-      const isErrorsExisted = 'errors' in data;
+        const isErrorsExisted = 'errors' in data;
 
-      if (isErrorsExisted) {
-        const email = data.errors.find((err) => err.param === 'email');
-        const password = data.errors.find((err) => err.param === 'password');
-        const firstName = data.errors.find((err) => err.param === 'firstName');
-        const lastNamer = data.errors.find((err) => err.param === 'lastNamer');
+        if (isErrorsExisted) {
+          const email = data.errors.find((err) => err.param === 'email');
+          const password = data.errors.find((err) => err.param === 'password');
+          const firstName = data.errors.find((err) => err.param === 'firstName');
+          const lastNamer = data.errors.find((err) => err.param === 'lastNamer');
 
-        if (email) enqueueSnackbar(email.msg, { variant: 'warning' });
-        if (password) enqueueSnackbar(password.msg, { variant: 'warning' });
-        if (firstName) enqueueSnackbar(firstName.msg, { variant: 'warning' });
-        if (lastNamer) enqueueSnackbar(lastNamer.msg, { variant: 'warning' });
+          if (email) enqueueSnackbar(email.msg, { variant: 'warning' });
+          if (password) enqueueSnackbar(password.msg, { variant: 'warning' });
+          if (firstName) enqueueSnackbar(firstName.msg, { variant: 'warning' });
+          if (lastNamer) enqueueSnackbar(lastNamer.msg, { variant: 'warning' });
 
-        enqueueSnackbar(data.message, { variant: 'warning' });
-      } else {
-        data
-          ? enqueueSnackbar(data.message, { variant: 'warning' })
-          : enqueueSnackbar(`${error}`, { variant: 'error' })
+          enqueueSnackbar(data.message, { variant: 'warning' });
+        } else {
+          data
+            ? enqueueSnackbar(data.message, { variant: 'warning' })
+            : enqueueSnackbar(`${error}`, { variant: 'error' })
+        }
       }
     }
   };
@@ -79,6 +81,7 @@ function Register() {
             value={form.lastName}
             onChange={handleChange}
             variant="outlined"
+            type="password"
           />
         </div>
         <div className={classes.textField}>
@@ -97,6 +100,8 @@ function Register() {
             value={form.password}
             onChange={handleChange}
             variant="outlined"
+            type="password"
+            onKeyDown={(key) => registerHandler(key)}
           />
         </div>
       </div>

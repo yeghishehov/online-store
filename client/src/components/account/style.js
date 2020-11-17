@@ -51,4 +51,7 @@ export default makeStyles((theme) => ({
       textDecoration: 'underline',
     }
   },
+  checkboxContainer: {
+    marginLeft: 10,
+  }
 }));

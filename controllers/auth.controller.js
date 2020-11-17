@@ -46,19 +46,21 @@ module.exports.login = async (req, res) => {
             })
         }
 
-        const {email, password} = req.body
+        const {email, password, remember} = req.body
 
         const user = await User.findOne({ email })
-
         if(!user) {
             return res.status(400).json({ message: 'user is not existed'})
         }
 
         const isMatch = await bcryptjs.compare(password, user.password)
-
         if(!isMatch) {
             return res.status(400).json({ message: 'incorrect password'})
         }
+
+        // if(remember) {
+        //     req.session.jwt = jwt.sign({ userId: user.id }, config.get('cookieSecret'));
+        // }
 
         const token = jwt.sign(
             { userId: user.id },

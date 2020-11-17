@@ -1,5 +1,6 @@
 {
     "port": 5000,
-    "jwtSecret": "metal gear solid",
+    "jwtSecret": "q*q30(JaP;h(Mn+w7aekP<sa=T,Cm|3H%g93gES*RknPPK/rRoqqDA;=m@B?p9~",
+    "cookieSecret": "3MbQ)F'li.Pp$Jyriw~FU.ut'jcB*sp)zvbaX];C0ENh.~`_`:>znu0KQ7R|]Xk",
     "mongoUri": "mongodb+srv://yeghishe:yeghishe352454@cluster0.yrgan.azure.mongodb.net/app?retryWrites=true&w=majority"
 }

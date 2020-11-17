@@ -6,7 +6,9 @@ import getProducts from '../../store/actions/products';
 import { baseUrl } from '../../utils/parameters';
 import ROUTES from '../../globals/routes';
 import handleScrollToTop from '../../globals/scrollToTop';
-import headerImg from '../../assets/images/ezgif.com-webp-to-png.webp';
+import headerImgMen from '../../assets/images/ezgif.com-webp-to-png.webp';
+import headerImgOutlet from '../../assets/images/AlphaCarbono_colores.webp';
+import headerImgWomen from '../../assets/images/Landing_Mujer.webp';
 import Filters from '../../components/filters/Filters';
 import classes from './style.module.css';
 
@@ -52,7 +54,9 @@ export default function Collection({ collectionName }) {
   return (
     <div className={classes.root}>
       <div className={classes.headerImgContainer}>
-        <img src={headerImg} alt="" className={classes.headerImg} />
+        {collectionName === 'men' && <img src={headerImgMen} alt="" className={classes.headerImg} />}
+        {collectionName === 'women' && <img src={headerImgWomen} alt="" className={classes.headerImg} />}
+        {collectionName === 'outlet' && <img src={headerImgOutlet} alt="" className={classes.headerImg} />}
       </div>
       <div className={classes.headerTitle}>{collectionName}</div>
       <div className={classes.filters}>
