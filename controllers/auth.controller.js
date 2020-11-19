@@ -58,9 +58,10 @@ module.exports.login = async (req, res) => {
             return res.status(400).json({ message: 'incorrect password'})
         }
 
-        // if(remember) {
-        //     req.session.jwt = jwt.sign({ userId: user.id }, config.get('cookieSecret'));
-        // }
+        if(remember) {
+            // req.session.jwt = jwt.sign({ userId: user.id }, config.get('cookieSecret'));
+            res.cookie('sdfasdfasdf23453rf', jwt.sign({ userId: user.id }, config.get('cookieSecret')))
+        }
 
         const token = jwt.sign(
             { userId: user.id },

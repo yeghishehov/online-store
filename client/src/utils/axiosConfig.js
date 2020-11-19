@@ -6,6 +6,7 @@ axios.setXApKey = (token) => {
 };
 
 axios.defaults.baseURL = apiUrl;
+axios.defaults.withCredentials = true
 
 const userData = localStorage.getItem('userData');
 if (userData && userData.token) {

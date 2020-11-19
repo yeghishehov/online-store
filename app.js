@@ -1,40 +1,39 @@
 const express = require('express')
-const session = require('cookie-session')
-const helmet = require('helmet')
-const hpp = require('hpp')
-const csurf = require('csurf')
+// const cookieSession = require('cookie-session')
 const bodyParser = require('body-parser')
-// const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser')
 const config = require('config')
 const mongoose = require('mongoose')
 const passport = require('passport')
 
-/* Create Express App */
 const app = express()
 
-/* Set Security Configs */
-app.use(helmet())
-app.use(hpp())
-
-/* Set Cookie Settings */
-app.use(
-    session({
-        name: 'session',
-        secret: config.get('cookieSecret'),
-        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000), // 3 days
-    })
-);
-app.use(csurf())
-
+// app.use(cookieSession({
+//     name: 'session',
+//     keys: [/* secret keys */],
+//     maxAge: 24 * 60 * 60 * 1000 // 24 hours
+// }))
 
 app.use(passport.initialize())
-// require('./middleware/passport')(passport)
+require('./middleware/passport')(passport)
 
 app.use(require('morgan')('dev'))
-app.use(require('cors')())
+app.use(require('cors')({
+    origin: 'http://localhost:3000',
+    credentials : true
+}))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
-// app.use(cookieParser(config.get('cookieSecret')))
+app.use(cookieParser())
+
+app.use(function (req, res, next) {	
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');    
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');    
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');   
+    res.setHeader('Access-Control-Allow-Credentials', true);    
+    next();
+});
+
 
 app.use('/images',express.static('images'))
 
