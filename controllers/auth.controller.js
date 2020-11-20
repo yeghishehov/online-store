@@ -1,8 +1,10 @@
 const {validationResult} = require('express-validator')
 const bcryptjs = require('bcryptjs')
+// const crypto = require('crypto')
 const config = require('config')
 const jwt = require('jsonwebtoken')
 const User = require('../models/user')
+const RefreshToken = require('../models/refreshToken')
     
 module.exports.registration = async (req, res) => {
     try {
@@ -60,7 +62,18 @@ module.exports.login = async (req, res) => {
 
         if(remember) {
             // req.session.jwt = jwt.sign({ userId: user.id }, config.get('cookieSecret'));
-            res.cookie('sdfasdfasdf23453rf', jwt.sign({ userId: user.id }, config.get('cookieSecret')))
+            // res.cookie('sdfasdfasdf23453rf', jwt.sign({ userId: user.id }, config.get('cookieSecret')))
+            const rememberToken = jwt.sign({ userId: user.id }, config.get('cookieSecret'))
+            // const rememberTokenName = crypto.randomBytes(40).toString('hex')
+            res.cookie('remember_me', rememberToken, { maxAge: 3 * 24 * 60 * 60 * 1000 })
+
+            User.findByIdAndUpdate({ _id : user.id  }, { token: rememberToken}, (err) => {
+                if(err) {
+                    console.log(err)
+                } else {
+                    console.log('user token updated')
+                }
+            })
         }
 
         const token = jwt.sign(
@@ -68,6 +81,15 @@ module.exports.login = async (req, res) => {
             config.get('jwtSecret'),
             { expiresIn: '1h' }
         )
+
+        // const refreshToken = new RefreshToken({
+        //     user: user.id,
+        //     token: crypto.randomBytes(40).toString('hex'),
+        //     expires: new Date(Date.now() + 7*24*60*60*1000),
+        //     createdByIp: req.ip
+        // });
+        
+        // await refreshToken.save();
 
         res.json({
             token: `Bearer ${token}`,
@@ -86,7 +108,10 @@ module.exports.login = async (req, res) => {
 
 module.exports.isAuthorized = async (req, res) => {
     try {
-        res.json({ user: req.user })
+        res.json({
+            token: req.headers.authorization,
+            user: req.user
+        })
     } catch (error) {
         res.status(500).json({message: 'Error: ' + error})
     }

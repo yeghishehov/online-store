@@ -81,7 +81,6 @@ function Register() {
             value={form.lastName}
             onChange={handleChange}
             variant="outlined"
-            type="password"
           />
         </div>
         <div className={classes.textField}>

@@ -38,7 +38,7 @@ export default () => {
       const checkingAuthorization = async () => {
         try {
           const response = await checkAuthorization(data.token);
-          login(data.token);
+          login(response.data.token);
           dispatch(initUser(response.data.user))
         } catch (error) {
           logout();

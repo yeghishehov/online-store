@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const {check} = require('express-validator')
 const authController = require('../controllers/auth.controller')
+const remember = require('../middleware/rememberMe')
 const passport = require('passport')
 
 // /api/auth/register
@@ -27,6 +28,6 @@ router.post(
 )
 
 // /api/auth/isAuthorized
-router.get('/isAuthorized', passport.authenticate('jwt', {session: false}), authController.isAuthorized)
+router.get('/isAuthorized', remember,  passport.authenticate('jwt', {session: false}), authController.isAuthorized)
 
 module.exports = router
